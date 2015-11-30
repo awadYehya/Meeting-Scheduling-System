@@ -17,13 +17,26 @@
 
 package meetingschedulingsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yehya Awad
  * 
  */
 public class Meeting {
+    /*
+        Private Properties
+    */
     private String roomID;
+    private ArrayList<Person> attendees;
+    private int timeSlot;
+
+    public Meeting(String roomID, ArrayList<Person> attendees, int timeSlot) {
+        this.roomID = roomID;
+        this.attendees = attendees;
+        this.timeSlot = timeSlot;
+    }
     
     /**
      * Get the value of roomID
@@ -43,8 +56,6 @@ public class Meeting {
         this.roomID = roomID;
     }
 
-    private int timeSlot;
-
     /**
      * Get the value of timeSlot
      *
@@ -62,5 +73,4 @@ public class Meeting {
     public void setTimeSlot(int timeSlot) {
         this.timeSlot = timeSlot;
     }
-
 }
