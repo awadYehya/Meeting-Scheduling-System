@@ -53,7 +53,7 @@ public class Person {
         return lastName;
     }
     
-        private String phoneNumber;
+    private String phoneNumber;
 
     /**
      * Get the value of phoneNumber

@@ -17,19 +17,58 @@
 
 package meetingschedulingsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author Yehya Awad
  * 
  */
 public class MeetingSchedulingSystem {
-
+    
+    /*
+     *  
+     */
+    public static ArrayList<Room> rooms;
+    public static ArrayList<Person> people;
+    public static ArrayList<Meeting> meetings;
+   
     /**
      * @param args the command line arguments
      */
     public static void main(String[] args) {
+        init();
+        initGUI();
+    }
+    
+    /**
+     * Initializes application
+     */
+    public static void init() {
+        rooms = new ArrayList<>();
+        people = new ArrayList<>();
+        meetings = new ArrayList<>();
+        
+        // Some Sample data
+        Room room1 = new Room(1);
+        Room room2 = new Room(2);
+        Meeting sample1 = new Meeting("Who will we fire today", "1", 9);
+        Meeting sample2 = new Meeting("Chicken or Beef?", "2", 12);
+        Meeting sample3 = new Meeting("Title", "2", 4);
+        meetings.add(sample1);
+        meetings.add(sample2);
+        meetings.add(sample3);
+        room1.addMeeting(sample1);
+        room2.addMeeting(sample2);
+        rooms.add(room1);
+        rooms.add(room2);
+    }
+    
+    /**
+     * Initializes application
+     */
+    public static void initGUI() {
         LoadingFrame load = new LoadingFrame();
         MainMenu main = new MainMenu();
     }
-    
 }

@@ -28,13 +28,17 @@ public class Meeting {
     /*
         Private Properties
     */
+    private final long ID;
+    private final String title;
     private String roomID;
     private ArrayList<Person> attendees;
     private int timeSlot;
 
-    public Meeting(String roomID, ArrayList<Person> attendees, int timeSlot) {
+    public Meeting(String title,String roomID, int timeSlot) {
+        this.ID = System.currentTimeMillis() % 1000; // setting unique ID by time
         this.roomID = roomID;
-        this.attendees = attendees;
+        this.title = title;
+        this.attendees = new ArrayList<>(10);
         this.timeSlot = timeSlot;
     }
     
@@ -72,5 +76,45 @@ public class Meeting {
      */
     public void setTimeSlot(int timeSlot) {
         this.timeSlot = timeSlot;
+    }
+    
+    /**
+     * Adds an attendee
+     * @param attnd Person object
+     */
+    public void addAttendee(Person attnd) {
+        attendees.add(attnd);
+    }
+    
+    /**
+     * Remove an attendee
+     * @param attnd Person object
+     * @return boolean true if person existed in attendee list
+     */
+    public boolean removeAttendee(Person attnd) {
+        boolean remove = attendees.remove(attnd);
+        return remove;
+    }
+
+    public long getID() {
+        return ID;
+    }
+
+    public String getTitle() {
+        return title;
+    }
+
+    public ArrayList<Person> getAttendees() {
+        return attendees;
+    }
+    
+    /**
+     * Formats and returns the time slot
+     * @return 
+     */
+    public String getFormattedTimeSlot(){
+        int tempTime = timeSlot%12;
+        if (timeSlot == 12) tempTime = 12;
+        return String.format("%s:00 %s", tempTime, timeSlot < 12 ? "AM": "PM");
     }
 }

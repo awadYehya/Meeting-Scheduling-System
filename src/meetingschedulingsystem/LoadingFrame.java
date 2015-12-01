@@ -26,17 +26,15 @@ import java.util.Random;
 public class LoadingFrame extends javax.swing.JFrame {
 
     private String [] loadingmessages;
-    private int loadspeed = 60;
-    private final int loadmessagefactor = 25;
+    private final int loadspeed = 20; // smaller = faster
+    private final int loadmessagefactor = 10; // smaller = faster
     
     /**
      * Creates new form LoadingFrame
      */
     public LoadingFrame() {
-        this.setLocationByPlatform(true);
-        this.setVisible(true);
-        this.setResizable(false);
         initComponents();
+        this.setLocationRelativeTo(null);
         initLoadingMessages();
         load();
         this.dispose();
@@ -44,11 +42,10 @@ public class LoadingFrame extends javax.swing.JFrame {
     
     private void initLoadingMessages() {
         String [] tempLoadingMessage = {
+            "Loading.",
+            "Loading..",
             "Loading...",
-            "This student deserves 100% for this assignment.",
-            "Loading...",
-            "Loading...",
-            "Almost there..."
+            "Loading....",
         };
         this.loadingmessages = tempLoadingMessage;
     }
@@ -58,6 +55,7 @@ public class LoadingFrame extends javax.swing.JFrame {
         loadingBar.setMinimum(0);
         this.setVisible(true);
         int loadingPercent = 0;
+        int msgIndex = 0;
         while (loadingBar.getValue() < 100) {
             try {
                 Thread.sleep(loadspeed);
@@ -65,31 +63,10 @@ public class LoadingFrame extends javax.swing.JFrame {
                 return;
             }
             if (loadingPercent%loadmessagefactor == 0) {
-                Random rand = new Random();
-                int randomMessageIndex = rand.nextInt(100)%(loadingmessages.length-1);
-                System.out.println(randomMessageIndex);
-                loadingLabelMessage.setText(loadingmessages[randomMessageIndex]);
+                msgIndex += 1;
+                msgIndex = msgIndex % loadingmessages.length;
+                loadingLabelMessage.setText(loadingmessages[msgIndex]);
             }
-//            if (loadingPercent >= 90) {
-//                loadingLabelMessage.setText(loadingmessages[loadingmessages.length-1]);
-//                loadspeed = (loadingPercent-90)*200;
-//            }
-//            if (loadingPercent == 99) {
-//                try {
-//                    Thread.sleep(10000);
-//                } catch (InterruptedException e) {
-//                    return;
-//                }
-//            }
-//            if (loadingPercent == 100) {
-//                loadingLabelMessage.setText("ERRORRRRRRRRRRR!!");
-//                try {
-//                    Thread.sleep(50000);
-//                } catch (InterruptedException e) {
-//                    return;
-//                }
-//                return;
-//            }
             loadingBar.setValue(loadingPercent++);
         }
     }
@@ -107,6 +84,8 @@ public class LoadingFrame extends javax.swing.JFrame {
         loadingBar = new javax.swing.JProgressBar();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
+        setAlwaysOnTop(true);
+        setResizable(false);
 
         loadingLabelMessage.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
         loadingLabelMessage.setText("Loading...");

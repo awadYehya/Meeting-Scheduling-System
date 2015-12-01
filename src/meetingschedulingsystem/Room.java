@@ -16,6 +16,8 @@
  */
 package meetingschedulingsystem;
 
+import java.util.ArrayList;
+
 /**
  *
  * @author yha5009
@@ -24,9 +26,23 @@ package meetingschedulingsystem;
 public class Room {
     
     private final String ID;
-
+    private ArrayList<Meeting> meetings;
+    
+    /** 
+     * Constructor  
+     * @param ID unique identification of the room
+     */
     public Room(String ID) {
         this.ID = ID;
+        meetings = new ArrayList<>(10); // initial capacity 10
+    }
+    
+    /** 
+     * Constructor  
+     * @param ID unique identification of the room
+     */
+    public Room(Integer ID) {
+        this(ID.toString());
     }
 
     /**
@@ -37,4 +53,16 @@ public class Room {
     public String getID() {
         return ID;
     }   
+    
+    /**
+     * Adds a meeting to the room
+     * @param meet 
+     */
+    public void addMeeting(Meeting meet) {
+        meetings.add(meet);
+    }
+
+    public ArrayList<Meeting> getMeetings() {
+        return meetings;
+    }
 }
