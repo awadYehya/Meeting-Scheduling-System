@@ -65,4 +65,11 @@ public class Room {
     public ArrayList<Meeting> getMeetings() {
         return meetings;
     }
+
+    @Override
+    public String toString() {
+        return ID; //To change body of generated methods, choose Tools | Templates.
+    }
+    
+    
 }
