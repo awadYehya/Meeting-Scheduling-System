@@ -25,8 +25,8 @@ import javax.swing.table.AbstractTableModel;
  *
  * @author yha5009
  */
-public class MeetingTableModel extends AbstractTableModel implements ListSelectionListener{
-    private String[] columnNames = {"Title", "Room", "Time"};//same as before...
+public class MeetingTableModel extends AbstractTableModel {
+    private String[] columnNames = {"Title", "Room", "Time", "Attendees"};//same as before...
     private Object[][] data = {{}};//same as before...
     private ArrayList<Object[]> dataList = new ArrayList<>();
     private ArrayList<Meeting> meetingsList = new ArrayList<>();
@@ -35,31 +35,32 @@ public class MeetingTableModel extends AbstractTableModel implements ListSelecti
     public MeetingTableModel() {
     }
     
-    public void clearMeetings() {
+    public void clearData() {
+        meetingsList.clear();
+        dataList.clear();
         refreshTable();
     }
     
     public void addMeeting(Meeting meet) {
         meetingsList.add(meet);
-        Object[] meetData = {meet.getTitle(), meet.getRoomID(), meet.getFormattedTimeSlot()};
+        Object[] meetData = {meet.getTitle(), meet.getRoomID(), meet.getFormattedTimeSlot(), meet.getAttendees().size()};
         dataList.add(meetData);
         refreshTable();
     }
     
     public void removeMeeting(Meeting meet) {
+        dataList.remove(meetingsList.indexOf(meet));
         meetingsList.remove(meet);
-        dataList.remove(selectedMeetingIndex);
         refreshTable();
     }
     
-    public Meeting getSelectedMeeting() {
-        return meetingsList.get(selectedMeetingIndex);
-    }
+//    public Meeting getSelectedMeeting() {
+//        return meetingsList.get(selectedMeetingIndex);
+//    }
     
-    @Override
-     public void valueChanged(ListSelectionEvent e) {
-         selectedMeetingIndex = e.getFirstIndex();
-     }
+    public Meeting getMeetingAtIndex(int indx) {
+        return meetingsList.get(indx);
+    }
     
     public void refreshTable() {
         data = dataList.toArray(new Object[dataList.size()][]);
