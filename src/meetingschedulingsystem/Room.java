@@ -61,7 +61,29 @@ public class Room {
     public void addMeeting(Meeting meet) {
         meetings.add(meet);
     }
+    
+    /**
+     * Remove a meeting from the room
+     * @param meet 
+     */
+    public void removeMeeting(Meeting meet) {
+        System.out.println(meetings.remove(meet));
+    }
 
+    /**
+     * Checks if the time slot is taken
+     * @param time
+     * @return true if time slot is taken
+     */
+    public boolean isTimeslotTaken(int time) {
+        for (Meeting meet : meetings) {
+            if (time == meet.getTimeSlot()) {
+                return true;
+            }
+        }
+        return false;
+    }
+    
     public ArrayList<Meeting> getMeetings() {
         return meetings;
     }

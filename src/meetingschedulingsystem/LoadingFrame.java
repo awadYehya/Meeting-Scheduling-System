@@ -16,8 +16,6 @@
  */
 package meetingschedulingsystem;
 
-import java.util.Random;
-
 /**
  *
  * @author yha5009
@@ -26,7 +24,7 @@ import java.util.Random;
 public class LoadingFrame extends javax.swing.JFrame {
 
     private String [] loadingmessages;
-    private final int loadspeed = 20; // smaller = faster
+    private final int loadspeed = 10; // smaller = faster
     private final int loadmessagefactor = 10; // smaller = faster
     
     /**
@@ -44,7 +42,7 @@ public class LoadingFrame extends javax.swing.JFrame {
         String [] tempLoadingMessage = {
             "Loading.",
             "Loading..",
-            "Loading...",
+            "Sexy Bitch...",
             "Loading....",
         };
         this.loadingmessages = tempLoadingMessage;

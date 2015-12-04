@@ -17,8 +17,6 @@
 package meetingschedulingsystem;
 
 import java.util.ArrayList;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 import javax.swing.table.AbstractTableModel;
 
 /**
@@ -26,11 +24,10 @@ import javax.swing.table.AbstractTableModel;
  * @author yha5009
  */
 public class MeetingTableModel extends AbstractTableModel {
-    private String[] columnNames = {"Title", "Room", "Time", "Attendees"};//same as before...
+    private final String[] columnNames = {"Title", "Room", "Time", "Attendees"};//same as before...
     private Object[][] data = {{}};//same as before...
     private ArrayList<Object[]> dataList = new ArrayList<>();
     private ArrayList<Meeting> meetingsList = new ArrayList<>();
-    private int selectedMeetingIndex = -1;
 
     public MeetingTableModel() {
     }
@@ -53,10 +50,6 @@ public class MeetingTableModel extends AbstractTableModel {
         meetingsList.remove(meet);
         refreshTable();
     }
-    
-//    public Meeting getSelectedMeeting() {
-//        return meetingsList.get(selectedMeetingIndex);
-//    }
     
     public Meeting getMeetingAtIndex(int indx) {
         return meetingsList.get(indx);

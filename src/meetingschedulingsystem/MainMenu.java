@@ -1,8 +1,8 @@
 /*
- * To change this license header, choose License Headers in Project Properties.
- * To change this template file, choose Tools | Templates
- * and open the template in the editor.
- */
+* To change this license header, choose License Headers in Project Properties.
+* To change this template file, choose Tools | Templates
+* and open the template in the editor.
+*/
 package meetingschedulingsystem;
 
 import java.util.ArrayList;
@@ -13,7 +13,7 @@ import javax.swing.JTable;
  * @author yha5009
  */
 public class MainMenu extends javax.swing.JFrame {
-
+    
     /**
      * Creates new form MainMenu
      */
@@ -42,10 +42,7 @@ public class MainMenu extends javax.swing.JFrame {
             initCols[time-8] = String.format("%s:00 %s", tempTime, time < 12 ? "AM": "PM");
         }
         
-        mTable.setModel(new javax.swing.table.DefaultTableModel(
-                initData,
-                initCols
-        ) {});
+        mTable.setModel(new MeetingScheduleTableModel(initData,initCols){});
         
         mTable.getTableHeader().setResizingAllowed(true);
         mTable.getTableHeader().resizeAndRepaint();
@@ -57,12 +54,14 @@ public class MainMenu extends javax.swing.JFrame {
      */
     private Object[][] getTableData() {
         ArrayList<Object[]> dataList = new ArrayList<>();
-        for (Room room : MeetingSchedulingSystem.rooms) {
+        for (Room room : DataManager.getRooms()) {
             ArrayList<Meeting> roomMeetings = room.getMeetings();
             Object [] tableMeetData = new Object[9];
             tableMeetData[0] = room.getID();
             for (Meeting meet : roomMeetings) {
-                tableMeetData[meet.getTimeSlot()-8] = meet.getTitle();
+                int indxpos = meet.getTimeSlot();
+                if (indxpos < 9) indxpos += 12;
+                tableMeetData[indxpos-8] = meet.getTitle();
             }
             dataList.add(tableMeetData);
         }
@@ -100,7 +99,8 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Meeting Scheduling System");
+        jLabel1.setText("Meetings Pro + Super Private PSU Edition 7000");
+        jLabel1.setName("MeetingsPro"); // NOI18N
 
         mTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
@@ -181,7 +181,7 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 737, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addComponent(meetingsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
@@ -191,7 +191,7 @@ public class MainMenu extends javax.swing.JFrame {
                             .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 648, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -219,32 +219,33 @@ public class MainMenu extends javax.swing.JFrame {
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-
+    
     private void meetingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetingsButtonActionPerformed
         MeetingsMenu meetingsmenu = new MeetingsMenu();
         meetingsmenu.setVisible(true);
     }//GEN-LAST:event_meetingsButtonActionPerformed
-
+    
     private void roomsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsButtonActionPerformed
-        // TODO add your handling code here:
+        RoomsMenu roomsmenu = new RoomsMenu();
+        roomsmenu.setVisible(true);
     }//GEN-LAST:event_roomsButtonActionPerformed
-
+    
     private void peopleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peopleButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_peopleButtonActionPerformed
-
+    
     private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_settingsButtonActionPerformed
-
+    
     private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
         // TODO add your handling code here:
     }//GEN-LAST:event_jButton5ActionPerformed
-
+    
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_exitButtonActionPerformed
-
+    
     /**
      * @param args the command line arguments
      */
@@ -252,8 +253,8 @@ public class MainMenu extends javax.swing.JFrame {
         /* Set the Nimbus look and feel */
         //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
         /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
+        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
+        */
         try {
             for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
                 if ("Nimbus".equals(info.getName())) {
@@ -271,15 +272,15 @@ public class MainMenu extends javax.swing.JFrame {
             java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
         }
         //</editor-fold>
-
+        
         /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new MainMenu().setVisible(true);
-            }
-        });
+//        java.awt.EventQueue.invokeLater(new Runnable() {
+//            public void run() {
+//                new MainMenu().setVisible(true);
+//            }
+//        });
     }
-
+    
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.Box.Filler filler3;

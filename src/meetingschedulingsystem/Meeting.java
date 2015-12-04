@@ -115,6 +115,6 @@ public class Meeting {
     public String getFormattedTimeSlot(){
         int tempTime = timeSlot%12;
         if (timeSlot == 12) tempTime = 12;
-        return String.format("%s:00 %s", tempTime, timeSlot < 12 ? "AM": "PM");
+        return String.format("%s:00 %s", tempTime, ((timeSlot < 9) || (timeSlot == 12) ? "PM": "AM"));
     }
 }

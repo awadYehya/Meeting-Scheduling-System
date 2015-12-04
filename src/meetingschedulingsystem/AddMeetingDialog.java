@@ -17,6 +17,9 @@
 package meetingschedulingsystem;
 
 import java.util.ArrayList;
+import java.util.logging.Level;
+import java.util.logging.Logger;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -28,9 +31,11 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     
     /**
      * Creates new form AddMeetingDialog
+     * @param parent
+     * @param modal
      */
     public AddMeetingDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, modal);
+        super(parent, true);
         initComponents();
         initSettings();
         initRoomList();
@@ -59,10 +64,16 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     }
     
     private boolean isDataValid() {
-        if (subjectField.getText().equals("")) {
+        if (subjectField.getText().equals("") || subjectField.getText() == null) {
+            return false;
+        } else if (roomList.getSelectedIndex() < 0) {
             return false;
         }
         return true;
+    }
+    
+    private void showDataInvalidDialog() {
+        JOptionPane.showMessageDialog(this, "Invalid Data", "Please enter a title.", JOptionPane.WARNING_MESSAGE);
     }
 
     /**
@@ -187,11 +198,20 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     }// </editor-fold>//GEN-END:initComponents
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
-        int selectedIndex = roomList.getSelectedIndex();
-        Room selectedRoom = rlm.get(selectedIndex);
         if (isDataValid()) {
+            int selectedIndex = roomList.getSelectedIndex();
+            System.out.println(selectedIndex);
+            Room selectedRoom = rlm.get(selectedIndex);
             createMeeting(subjectField.getText(),selectedRoom, 2);
+            try {
+                Thread.sleep(100);
+            } catch (InterruptedException ex) {
+                Logger.getLogger(AddMeetingDialog.class.getName()).log(Level.SEVERE, null, ex);
+            }
+            this.dispose();
+            return;
         }
+        showDataInvalidDialog();
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed

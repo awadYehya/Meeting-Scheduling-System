@@ -21,58 +21,51 @@ import java.awt.event.WindowEvent;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
-import javax.swing.ListSelectionModel;
-import javax.swing.event.ListSelectionEvent;
-import javax.swing.event.ListSelectionListener;
 
 /**
  *
  * @author yha5009
  */
-public class MeetingsMenu extends javax.swing.JFrame {
+public class RoomsMenu extends javax.swing.JFrame {
     
-    private MeetingTableModel mtm = new MeetingTableModel();
-    private ListSelectionModel lsm;
-    private int selectedMeetingIndex = -1;
+    private RoomTableModel rtm = new RoomTableModel(); // room table model
     
     /**
      * Creates new form MeetingsMenu
      */
-    public MeetingsMenu() {
+    public RoomsMenu() {
         initComponents();
         initTable();
         initSettings();
-        initSelectionModel();
         updateModel();
         initListenerUpdate();
     }
     
-    private void initSelectionModel() {
-        lsm = meetingTable.getSelectionModel();
-        lsm.addListSelectionListener(new ListSelectionListener() {
-            @Override
-            public void valueChanged(ListSelectionEvent e) {
-                selectedMeetingIndex = lsm.getMinSelectionIndex();
-            }
-        });
-    }
-    
-    private void showNoMeetingSelected() {
+    /**
+     * Show dialog for nothing selected
+     */
+    private void showNoRoomSelected() {
         JOptionPane.showMessageDialog(this,
-                "Please select a meeting first.",
-                "Meeting not selected",
+                "Please select a room first.",
+                "Room not selected",
                 JOptionPane.INFORMATION_MESSAGE);
     }
     
+    /**
+     * Initialize frame settings
+     */
     private void initSettings() {
         this.setDefaultCloseOperation(JFrame.HIDE_ON_CLOSE);
         this.setResizable(false);
         this.setLocationRelativeTo(this);
     }
     
+    /**
+     * Initialize table settings
+     */
     private void initTable() {
-        meetingTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
-        meetingTable.getTableHeader().setReorderingAllowed(false);
+        roomsTable.setAutoResizeMode(JTable.AUTO_RESIZE_ALL_COLUMNS);
+        roomsTable.getTableHeader().setReorderingAllowed(false);
     }
     
     /**
@@ -113,15 +106,30 @@ public class MeetingsMenu extends javax.swing.JFrame {
         });
     }
     
+    /**
+     * Updates the table model and table with any changes to the data
+     */
     private void updateModel() {
-        mtm.clearData();
-        for (Meeting meet : DataManager.getMeetings()) {
-            mtm.addMeeting(meet);
+        rtm.clearData();
+        for (Room room : DataManager.getRooms()) {
+            rtm.addRoom(room);
         }
-        mtm.refreshTable();
-        meetingTable.setModel(mtm);
-        meetingTable.getTableHeader().resizeAndRepaint();
-        meetingTable.updateUI();
+        rtm.refreshTable();
+        roomsTable.setModel(rtm);
+        roomsTable.getTableHeader().resizeAndRepaint();
+        roomsTable.updateUI();
+    }
+    
+    /**
+     * Opens a dialog asking user if he wants to delete.
+     * @return 
+     */
+    private int confirmDeleteDialog() {
+        return JOptionPane.showConfirmDialog(this,
+                "Are you sure you want to delete the selected room(s)?"
+                        + "\nNote: You cannot delete rooms with meetings in them.",
+                "Deleting rooms", JOptionPane.YES_NO_OPTION,
+                JOptionPane.WARNING_MESSAGE);
     }
     
     /**
@@ -135,18 +143,18 @@ public class MeetingsMenu extends javax.swing.JFrame {
 
         jLabel2 = new javax.swing.JLabel();
         jScrollPane1 = new javax.swing.JScrollPane();
-        meetingTable = new javax.swing.JTable();
-        addNewButton = new javax.swing.JButton();
-        delSelButton = new javax.swing.JButton();
-        showSelButton = new javax.swing.JButton();
+        roomsTable = new javax.swing.JTable();
+        addRoomButton = new javax.swing.JButton();
+        deleteSelectedButton = new javax.swing.JButton();
+        showSelectedButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.EXIT_ON_CLOSE);
 
         jLabel2.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel2.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel2.setText("Meetings");
+        jLabel2.setText("Rooms");
 
-        meetingTable.setModel(new javax.swing.table.DefaultTableModel(
+        roomsTable.setModel(new javax.swing.table.DefaultTableModel(
             new Object [][] {
                 {null, null, null, null},
                 {null, null, null, null},
@@ -165,28 +173,28 @@ public class MeetingsMenu extends javax.swing.JFrame {
                 return canEdit [columnIndex];
             }
         });
-        meetingTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
-        meetingTable.setShowVerticalLines(false);
-        jScrollPane1.setViewportView(meetingTable);
+        roomsTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
+        roomsTable.setShowVerticalLines(false);
+        jScrollPane1.setViewportView(roomsTable);
 
-        addNewButton.setText("Add New");
-        addNewButton.addActionListener(new java.awt.event.ActionListener() {
+        addRoomButton.setText("Add new");
+        addRoomButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addNewButtonActionPerformed(evt);
+                addRoomButtonActionPerformed(evt);
             }
         });
 
-        delSelButton.setText("Delete All Selected");
-        delSelButton.addActionListener(new java.awt.event.ActionListener() {
+        deleteSelectedButton.setText("Delete all selected");
+        deleteSelectedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                delSelButtonActionPerformed(evt);
+                deleteSelectedButtonActionPerformed(evt);
             }
         });
 
-        showSelButton.setText("Show First Selected");
-        showSelButton.addActionListener(new java.awt.event.ActionListener() {
+        showSelectedButton.setText("Show room Selected");
+        showSelectedButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                showSelButtonActionPerformed(evt);
+                showSelectedButtonActionPerformed(evt);
             }
         });
 
@@ -204,9 +212,9 @@ public class MeetingsMenu extends javax.swing.JFrame {
                         .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addGap(18, 18, 18)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addComponent(addNewButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(delSelButton, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
-                            .addComponent(showSelButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
+                            .addComponent(addRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(deleteSelectedButton, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(showSelectedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -217,59 +225,71 @@ public class MeetingsMenu extends javax.swing.JFrame {
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                     .addGroup(layout.createSequentialGroup()
-                        .addComponent(addNewButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addComponent(addRoomButton, javax.swing.GroupLayout.PREFERRED_SIZE, 23, javax.swing.GroupLayout.PREFERRED_SIZE)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(showSelButton)
+                        .addComponent(showSelectedButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(delSelButton))
+                        .addComponent(deleteSelectedButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
                 .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
-    
-    private void addNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewButtonActionPerformed
-        AddMeetingDialog addDialog = new AddMeetingDialog(this, true);
-        addDialog.setVisible(true);
+    /**
+     * Button action
+     * @param evt 
+     */
+    private void addRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomButtonActionPerformed
+        AddRoomDialog addDialog = new AddRoomDialog(this, true);
         addDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 updateModel();
             }
         });
-    }//GEN-LAST:event_addNewButtonActionPerformed
-    
-    private void delSelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSelButtonActionPerformed
-        if (meetingTable.getSelectedRows().length == 0){
-            showNoMeetingSelected();
+    }//GEN-LAST:event_addRoomButtonActionPerformed
+    /**
+     * Button action
+     * @param evt 
+     */
+    private void deleteSelectedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_deleteSelectedButtonActionPerformed
+        int removeCount = 0;
+        if (roomsTable.getSelectedRows().length == 0){
+            showNoRoomSelected();
             return;
         }
-        int [] selectedRows = meetingTable.getSelectedRows();
-        int confirmCancel = JOptionPane.showConfirmDialog(this,
-                "Are you sure you want to cancel the selected meeting(s)?"
-                        + "\nAll attendees will be removed from these meeting.",
-                "Canceling Meeting", JOptionPane.YES_NO_OPTION,
-                JOptionPane.WARNING_MESSAGE);
+        int [] selectedRows = roomsTable.getSelectedRows();
+        int confirmCancel = confirmDeleteDialog();
         if (confirmCancel == JOptionPane.YES_OPTION) {
             for (int rowindx: selectedRows) {
-                Meeting selectedMeeting = mtm.getMeetingAtIndex(rowindx);
-                DataManager.removeMeeting(selectedMeeting);
+                Room selectedRoom;
+                selectedRoom = rtm.getRoomAtIndex(rowindx);
+                if (DataManager.removeRoom(selectedRoom)) {
+                } else {
+                    // TODO: pops new dialog
+                    System.out.println("Could not remove: "+selectedRoom);
+                    continue;
+                }
+                removeCount += 1;
             }
             updateModel();
-            JOptionPane.showMessageDialog(this, "Meeting(s) canceled succesfully.");
+            JOptionPane.showMessageDialog(this, removeCount+" Room(s) deleted succesfully.");
         }
-        meetingTable.clearSelection();
-    }//GEN-LAST:event_delSelButtonActionPerformed
-    
-    private void showSelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSelButtonActionPerformed
-        if (meetingTable.getSelectedRow() < 0){
-            showNoMeetingSelected();
+        roomsTable.clearSelection();
+    }//GEN-LAST:event_deleteSelectedButtonActionPerformed
+    /**
+     * Button action
+     * @param evt 
+     */
+    private void showSelectedButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_showSelectedButtonActionPerformed
+        if (roomsTable.getSelectedRow() < 0){
+            showNoRoomSelected();
             return;
         }
-        int selectedRow = meetingTable.getSelectedRow();
-        Meeting selectedMeeting = mtm.getMeetingAtIndex(selectedRow);
-        ShowMeetingDialog showmeetingd = new ShowMeetingDialog(selectedMeeting);
+        int selectedRow = roomsTable.getSelectedRow();
+        Room selectedRoom = rtm.getRoomAtIndex(selectedRow);
+        ShowMeetingDialog showmeetingd = new ShowMeetingDialog(new Meeting("X", "1", 2)); // FIX THIS SHIT
         showmeetingd.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
@@ -278,8 +298,8 @@ public class MeetingsMenu extends javax.swing.JFrame {
             }
         });
         showmeetingd.setVisible(true);
-        meetingTable.clearSelection();
-    }//GEN-LAST:event_showSelButtonActionPerformed
+        roomsTable.clearSelection();
+    }//GEN-LAST:event_showSelectedButtonActionPerformed
     
     /**
      * @param args the command line arguments
@@ -317,11 +337,11 @@ public class MeetingsMenu extends javax.swing.JFrame {
 //    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addNewButton;
-    private javax.swing.JButton delSelButton;
+    private javax.swing.JButton addRoomButton;
+    private javax.swing.JButton deleteSelectedButton;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JScrollPane jScrollPane1;
-    private javax.swing.JTable meetingTable;
-    private javax.swing.JButton showSelButton;
+    private javax.swing.JTable roomsTable;
+    private javax.swing.JButton showSelectedButton;
     // End of variables declaration//GEN-END:variables
 }

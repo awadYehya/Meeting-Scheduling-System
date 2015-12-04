@@ -72,5 +72,13 @@ public class Person {
     public void setPhoneNumber(String phoneNumber) {
         this.phoneNumber = phoneNumber;
     }
-
+    
+    /**
+     * This will be for the lists, as the list uses toString to display an Object
+     * @return Name format of Person
+     */
+    @Override
+    public String toString() {
+        return String.format("%s %s", this.firstName, this.lastName); //To change body of generated methods, choose Tools | Templates.
+    }
 }
