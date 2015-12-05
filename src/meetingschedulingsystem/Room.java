@@ -56,7 +56,7 @@ public class Room {
     
     /**
      * Adds a meeting to the room
-     * @param meet 
+     * @param meet Meeting being added
      */
     public void addMeeting(Meeting meet) {
         meetings.add(meet);
@@ -64,7 +64,7 @@ public class Room {
     
     /**
      * Remove a meeting from the room
-     * @param meet 
+     * @param meet Meeting being removed
      */
     public void removeMeeting(Meeting meet) {
         System.out.println(meetings.remove(meet));
@@ -72,7 +72,7 @@ public class Room {
 
     /**
      * Checks if the time slot is taken
-     * @param time
+     * @param time Integer time (hour) being checked
      * @return true if time slot is taken
      */
     public boolean isTimeslotTaken(int time) {

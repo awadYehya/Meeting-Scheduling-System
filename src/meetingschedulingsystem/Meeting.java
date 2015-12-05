@@ -110,7 +110,7 @@ public class Meeting {
     
     /**
      * Formats and returns the time slot
-     * @return 
+     * @return String of the time formated nicely
      */
     public String getFormattedTimeSlot(){
         int tempTime = timeSlot%12;

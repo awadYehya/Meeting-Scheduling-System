@@ -26,6 +26,8 @@ public class AddRoomDialog extends javax.swing.JDialog {
 
     /**
      * Creates new form AddRoomDialog
+     * @param parent parent of the dialog
+     * @param modal if true, locks all other windows until this dialog is closed
      */
     public AddRoomDialog(java.awt.Frame parent, boolean modal) {
         super(parent, true);

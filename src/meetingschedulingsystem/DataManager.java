@@ -92,7 +92,7 @@ public class DataManager {
     
     /**
      * Adds a room to the data ArrayList
-     * @param room
+     * @param room Room being added
      */
     public static void addRoom(Room room) {
         if (DataManager.rooms.contains(room)){
@@ -103,7 +103,7 @@ public class DataManager {
     
     /**
      * Adds a meeting to the data ArrayList and to the corresponding room
-     * @param meet 
+     * @param meet Meeting being added to the data
      */
     public static void addMeeting(Meeting meet) {
         for (Room room : rooms) {
@@ -128,8 +128,8 @@ public class DataManager {
     
     /**
      * Removes a room only if it has no meetings
-     * @param room
-     * @return 
+     * @param room Room being removed
+     * @return boolean true if removed false if cannot remove
      */
     public static boolean removeRoom(Room room) {
         if (room.getMeetings().isEmpty()) {
@@ -154,7 +154,7 @@ public class DataManager {
     
     /**
      * Removes the meeting
-     * @param meet 
+     * @param meet Meeting being removed
      */
     public static void removeMeeting(Meeting meet) {
         for (Room room : rooms) {
@@ -171,7 +171,7 @@ public class DataManager {
     
     /**
      * Removes a person
-     * @param pers 
+     * @param pers Person being removed
      */
     public static void removePerson(Person pers) {
         DataManager.people.remove(pers);

@@ -31,8 +31,8 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     
     /**
      * Creates new form AddMeetingDialog
-     * @param parent
-     * @param modal
+     * @param parent parent of the dialog
+     * @param modal if true, locks all other windows until this dialog is closed
      */
     public AddMeetingDialog(java.awt.Frame parent, boolean modal) {
         super(parent, true);
