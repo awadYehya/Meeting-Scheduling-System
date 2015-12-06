@@ -18,11 +18,7 @@ package meetingschedulingsystem;
 
 
 
-import java.util.ArrayList;
 import javax.swing.DefaultListModel;
-import javax.swing.JOptionPane;
-import javax.swing.ListModel;
-import javax.swing.event.ListDataListener;
 
 /**
  * Dialog for a room

@@ -41,13 +41,16 @@ public class MeetingSchedulingSystem {
         // Some Sample data
         Room room1 = new Room(1);
         Room room2 = new Room(2);
+        Room room3 = new Room("McGarvey Commons");
         Meeting sample1 = new Meeting("Who will we fire today", "1", 9);
         Meeting sample2 = new Meeting("Chicken or Beef?", "2", 12);
         DataManager.addRoom(room1);
         DataManager.addRoom(room2);
+        DataManager.addRoom(room3);
         boolean x = DataManager.addMeeting(sample1);
         boolean y = DataManager.addMeeting(sample2);
         Person me = new Person("Yehya", "Awad", "7174606012");
+        Person pers1 = new Person("John", "Doe", "1239890123");
         DataManager.addPerson(me);
     }
     
