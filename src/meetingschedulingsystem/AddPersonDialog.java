@@ -16,6 +16,11 @@
  */
 package meetingschedulingsystem;
 
+import java.text.ParseException;
+import javax.swing.JFormattedTextField;
+import javax.swing.JOptionPane;
+import javax.swing.text.NumberFormatter;
+
 /**
  *
  * @author yehyaawad
@@ -33,26 +38,58 @@ public class AddPersonDialog extends javax.swing.JDialog {
     }
     
     private void initPhoneField() {
-        
+//        class PhoneNumberFormatter extends JFormattedTextField.AbstractFormatterFactory {
+//            
+//            class PhoneFormatter extends JFormattedTextField.AbstractFormatter {
+//
+//                @Override
+//                public Object stringToValue(String text) throws ParseException {
+//                    
+//                }
+//
+//                @Override
+//                public String valueToString(Object value) throws ParseException {
+//                    v
+//                }
+//                
+//            }
+//            
+//            @Override
+//            public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
+//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
+//            }
+//    
+//        }
+//        
+        //phoneFField.setFormatterFactory(tf);
     }
     
     private boolean isInputValid() {
         if (firstNameField.getText().equals("") || 
                 lastNameField.getText().equals("") ||
                 phoneFField.getText().equals("")) {
+            showInvalidInputDialog();
             return false;
         }
         return true;
     }
     
-    private void createPerson() {
+    private void showInvalidInputDialog() {
+        JOptionPane.showMessageDialog(this, "Invalid input. Please fill all fields.", 
+                "Add Person" , 
+                JOptionPane.WARNING_MESSAGE);
+    }
+    
+    private boolean createPerson() {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
         String phoneNumber = phoneFField.getText();
         
         if (isInputValid()){
             DataManager.addPerson(new Person(firstName, lastName, phoneNumber));
+            return true;
         }
+        return false;
     }
 
     /**
@@ -70,8 +107,8 @@ public class AddPersonDialog extends javax.swing.JDialog {
         jLabel1 = new javax.swing.JLabel();
         jLabel2 = new javax.swing.JLabel();
         jLabel3 = new javax.swing.JLabel();
-        jButton1 = new javax.swing.JButton();
-        jButton2 = new javax.swing.JButton();
+        addButton = new javax.swing.JButton();
+        cancelButton = new javax.swing.JButton();
         jLabel4 = new javax.swing.JLabel();
         jSeparator1 = new javax.swing.JSeparator();
 
@@ -83,9 +120,19 @@ public class AddPersonDialog extends javax.swing.JDialog {
 
         jLabel3.setText("Phone:");
 
-        jButton1.setText("Add");
+        addButton.setText("Add");
+        addButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                addButtonActionPerformed(evt);
+            }
+        });
 
-        jButton2.setText("Cancel");
+        cancelButton.setText("Cancel");
+        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                cancelButtonActionPerformed(evt);
+            }
+        });
 
         jLabel4.setText("Add new person");
 
@@ -104,9 +151,9 @@ public class AddPersonDialog extends javax.swing.JDialog {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
                             .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(jButton1, javax.swing.GroupLayout.PREFERRED_SIZE, 71, Short.MAX_VALUE)
+                                .addComponent(addButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, Short.MAX_VALUE)
                                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(jButton2, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
+                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 71, javax.swing.GroupLayout.PREFERRED_SIZE))
                             .addComponent(phoneFField)
                             .addComponent(lastNameField)
                             .addComponent(firstNameField)))
@@ -137,17 +184,26 @@ public class AddPersonDialog extends javax.swing.JDialog {
                     .addComponent(jLabel3))
                 .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jButton1)
-                    .addComponent(jButton2)))
+                    .addComponent(addButton)
+                    .addComponent(cancelButton)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
+    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
+        boolean success = createPerson();
+        if (success) this.dispose();
+    }//GEN-LAST:event_addButtonActionPerformed
+
+    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
+        this.dispose();
+    }//GEN-LAST:event_cancelButtonActionPerformed
+
     // Variables declaration - do not modify//GEN-BEGIN:variables
+    private javax.swing.JButton addButton;
+    private javax.swing.JButton cancelButton;
     private javax.swing.JTextField firstNameField;
-    private javax.swing.JButton jButton1;
-    private javax.swing.JButton jButton2;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JLabel jLabel2;
     private javax.swing.JLabel jLabel3;

@@ -1,5 +1,5 @@
 /*
- * Copyright (C) 2015 yha5009
+ * Copyright (C) 2015 yehyaawad
  *
  * This program is free software: you can redistribute it and/or modify
  * it under the terms of the GNU General Public License as published by
@@ -16,21 +16,16 @@
  */
 package meetingschedulingsystem;
 
-import javax.swing.JOptionPane;
-
 /**
  *
- * @author yha5009
+ * @author yehyaawad
  */
-public class AddRoomDialog extends javax.swing.JDialog {
+public class AddRoomDialog extends javax.swing.JFrame {
 
     /**
      * Creates new form AddRoomDialog
-     * @param parent parent of the dialog
-     * @param modal if true, locks all other windows until this dialog is closed
      */
-    public AddRoomDialog(java.awt.Frame parent, boolean modal) {
-        super(parent, true);
+    public AddRoomDialog() {
         initComponents();
         initSettings();
     }
@@ -39,21 +34,9 @@ public class AddRoomDialog extends javax.swing.JDialog {
      * Initialize settings of the JDialog
      */
     private void initSettings() {
+        this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
-        this.setLocationRelativeTo(this);
-    }
-    
-    private void showInvalidDialog() {
-        JOptionPane.showMessageDialog(this, "Invalid input.", "Room input" , JOptionPane.WARNING_MESSAGE);
-    }
-    
-    private boolean isInputValid() {
-        if ("".equals(roomIDField.getText()) || "".equals(roomNameField.getText())) {
-            showInvalidDialog();
-            return false;
-        }
-        return true;
     }
 
     /**
@@ -65,30 +48,22 @@ public class AddRoomDialog extends javax.swing.JDialog {
     // <editor-fold defaultstate="collapsed" desc="Generated Code">//GEN-BEGIN:initComponents
     private void initComponents() {
 
-        jLabel1 = new javax.swing.JLabel();
-        jLabel2 = new javax.swing.JLabel();
-        roomNameField = new javax.swing.JTextField();
-        roomIDField = new javax.swing.JTextField();
-        addButton = new javax.swing.JButton();
-        cancelButton = new javax.swing.JButton();
+        singleButton = new javax.swing.JButton();
+        multiButton = new javax.swing.JButton();
 
         setDefaultCloseOperation(javax.swing.WindowConstants.DISPOSE_ON_CLOSE);
 
-        jLabel1.setText("Room ID:");
-
-        jLabel2.setText("Room Name:");
-
-        addButton.setText("Add");
-        addButton.addActionListener(new java.awt.event.ActionListener() {
+        singleButton.setText("Add Single Room");
+        singleButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                addButtonActionPerformed(evt);
+                singleButtonActionPerformed(evt);
             }
         });
 
-        cancelButton.setText("Cancel");
-        cancelButton.addActionListener(new java.awt.event.ActionListener() {
+        multiButton.setText("Add Multiple Rooms");
+        multiButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                cancelButtonActionPerformed(evt);
+                multiButtonActionPerformed(evt);
             }
         });
 
@@ -98,107 +73,33 @@ public class AddRoomDialog extends javax.swing.JDialog {
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addGroup(layout.createSequentialGroup()
-                        .addGap(17, 17, 17)
-                        .addComponent(jLabel1)
-                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                        .addComponent(roomIDField))
-                    .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
-                            .addGroup(layout.createSequentialGroup()
-                                .addComponent(jLabel2)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                                .addComponent(roomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, 107, javax.swing.GroupLayout.PREFERRED_SIZE))
-                            .addGroup(javax.swing.GroupLayout.Alignment.TRAILING, layout.createSequentialGroup()
-                                .addComponent(addButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                                .addComponent(cancelButton, javax.swing.GroupLayout.PREFERRED_SIZE, 89, javax.swing.GroupLayout.PREFERRED_SIZE)))
-                        .addGap(0, 0, Short.MAX_VALUE)))
-                .addContainerGap())
+                .addComponent(singleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
+                .addComponent(multiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 157, javax.swing.GroupLayout.PREFERRED_SIZE)
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
         );
         layout.setVerticalGroup(
             layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
             .addGroup(layout.createSequentialGroup()
-                .addContainerGap()
+                .addContainerGap(javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel1)
-                    .addComponent(roomIDField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(jLabel2)
-                    .addComponent(roomNameField, javax.swing.GroupLayout.PREFERRED_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.PREFERRED_SIZE))
-                .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED, 17, Short.MAX_VALUE)
-                .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.BASELINE)
-                    .addComponent(addButton)
-                    .addComponent(cancelButton))
-                .addContainerGap())
+                    .addComponent(singleButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)
+                    .addComponent(multiButton, javax.swing.GroupLayout.PREFERRED_SIZE, 55, javax.swing.GroupLayout.PREFERRED_SIZE)))
         );
 
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    private void addButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addButtonActionPerformed
-        if (isInputValid()) {
-            Room newroom = new Room(roomIDField.getText());
-            DataManager.addRoom(newroom);
-            this.dispose();
-            // Add Room name functionality
-        }
-    }//GEN-LAST:event_addButtonActionPerformed
+    private void singleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_singleButtonActionPerformed
+        AddRoomSingleDialog single = new AddRoomSingleDialog(this, true);
+    }//GEN-LAST:event_singleButtonActionPerformed
 
-    private void cancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_cancelButtonActionPerformed
-        this.dispose();
-    }//GEN-LAST:event_cancelButtonActionPerformed
-
-//    /**
-//     * @param args the command line arguments
-//     */
-//    public static void main(String args[]) {
-//        /* Set the Nimbus look and feel */
-//        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-//        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-//         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-//         */
-//        try {
-//            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-//                if ("Nimbus".equals(info.getName())) {
-//                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-//                    break;
-//                }
-//            }
-//        } catch (ClassNotFoundException ex) {
-//            java.util.logging.Logger.getLogger(AddRoomDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (InstantiationException ex) {
-//            java.util.logging.Logger.getLogger(AddRoomDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (IllegalAccessException ex) {
-//            java.util.logging.Logger.getLogger(AddRoomDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-//            java.util.logging.Logger.getLogger(AddRoomDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-//        }
-//        //</editor-fold>
-//
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                AddRoomDialog dialog = new AddRoomDialog(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-//    }
+    private void multiButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_multiButtonActionPerformed
+        AddRoomRangeDialog multi = new AddRoomRangeDialog(this, true);
+    }//GEN-LAST:event_multiButtonActionPerformed
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
-    private javax.swing.JButton addButton;
-    private javax.swing.JButton cancelButton;
-    private javax.swing.JLabel jLabel1;
-    private javax.swing.JLabel jLabel2;
-    private javax.swing.JTextField roomIDField;
-    private javax.swing.JTextField roomNameField;
+    private javax.swing.JButton multiButton;
+    private javax.swing.JButton singleButton;
     // End of variables declaration//GEN-END:variables
 }

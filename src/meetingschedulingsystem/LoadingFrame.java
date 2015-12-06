@@ -24,8 +24,8 @@ package meetingschedulingsystem;
 public class LoadingFrame extends javax.swing.JFrame {
 
     private String [] loadingmessages;
-    private final int loadspeed = 10; // smaller = faster
-    private final int loadmessagefactor = 10; // smaller = faster
+    private final int loadspeed = 7; // smaller = faster
+    private final int loadmessagefactor = 1; // smaller = faster
     
     /**
      * Creates new form LoadingFrame
@@ -35,15 +35,15 @@ public class LoadingFrame extends javax.swing.JFrame {
         this.setLocationRelativeTo(null);
         initLoadingMessages();
         load();
-        this.dispose();
     }
     
     private void initLoadingMessages() {
         String [] tempLoadingMessage = {
             "Loading.",
             "Loading..",
-            "Sexy Bitch...",
+            "Loading...",
             "Loading....",
+            "Loading....."
         };
         this.loadingmessages = tempLoadingMessage;
     }
@@ -65,8 +65,12 @@ public class LoadingFrame extends javax.swing.JFrame {
                 msgIndex = msgIndex % loadingmessages.length;
                 loadingLabelMessage.setText(loadingmessages[msgIndex]);
             }
+            if(loadingPercent%30 == 0) {
+                loadingLabelMessage.setText("Loading.A.Grade"); // subliminal messaging
+            }
             loadingBar.setValue(loadingPercent++);
         }
+        this.dispose();
     }
 
     /**
@@ -113,40 +117,6 @@ public class LoadingFrame extends javax.swing.JFrame {
         pack();
     }// </editor-fold>//GEN-END:initComponents
 
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(LoadingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(LoadingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(LoadingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(LoadingFrame.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-        /* Create and display the form */
-        java.awt.EventQueue.invokeLater(new Runnable() {
-            public void run() {
-                new LoadingFrame().setVisible(true);
-            }
-        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JProgressBar loadingBar;

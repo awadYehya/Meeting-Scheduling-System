@@ -17,6 +17,7 @@
 
 package meetingschedulingsystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -24,7 +25,7 @@ import java.util.ArrayList;
  * @author Yehya Awad
  * 
  */
-public class Meeting {
+public class Meeting implements Serializable {
     /*
         Private Properties
     */
@@ -123,4 +124,7 @@ public class Meeting {
         return this.title+" at "+this.getFormattedTimeSlot();
     }
     
+    public String fullString() {
+        return this.toString()+" in room "+this.roomID;
+    }
 }

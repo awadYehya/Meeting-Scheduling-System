@@ -25,9 +25,9 @@
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="singleButton" min="-2" pref="157" max="-2" attributes="0"/>
+              <Component id="loadButton" min="-2" pref="129" max="-2" attributes="0"/>
               <EmptySpace max="-2" attributes="0"/>
-              <Component id="multiButton" min="-2" pref="157" max="-2" attributes="0"/>
+              <Component id="saveButton" min="-2" pref="129" max="-2" attributes="0"/>
               <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
@@ -35,30 +35,31 @@
     <DimensionLayout dim="1">
       <Group type="103" groupAlignment="0" attributes="0">
           <Group type="102" alignment="0" attributes="0">
-              <EmptySpace max="32767" attributes="0"/>
+              <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="3" attributes="0">
-                  <Component id="singleButton" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
-                  <Component id="multiButton" alignment="3" min="-2" pref="55" max="-2" attributes="0"/>
+                  <Component id="loadButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
+                  <Component id="saveButton" alignment="3" min="-2" pref="42" max="-2" attributes="0"/>
               </Group>
+              <EmptySpace max="32767" attributes="0"/>
           </Group>
       </Group>
     </DimensionLayout>
   </Layout>
   <SubComponents>
-    <Component class="javax.swing.JButton" name="singleButton">
+    <Component class="javax.swing.JButton" name="loadButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Single Room"/>
+        <Property name="text" type="java.lang.String" value="Load file"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="singleButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="multiButton">
+    <Component class="javax.swing.JButton" name="saveButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Add Multiple Rooms"/>
+        <Property name="text" type="java.lang.String" value="Save"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="multiButtonActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="saveButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>

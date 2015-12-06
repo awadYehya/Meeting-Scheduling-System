@@ -45,8 +45,8 @@ public class MeetingSchedulingSystem {
         Meeting sample2 = new Meeting("Chicken or Beef?", "2", 12);
         DataManager.addRoom(room1);
         DataManager.addRoom(room2);
-        DataManager.addMeeting(sample1);
-        DataManager.addMeeting(sample2);
+        boolean x = DataManager.addMeeting(sample1);
+        boolean y = DataManager.addMeeting(sample2);
         Person me = new Person("Yehya", "Awad", "7174606012");
         DataManager.addPerson(me);
     }

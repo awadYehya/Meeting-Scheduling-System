@@ -17,13 +17,15 @@
 
 package meetingschedulingsystem;
 
+import java.io.Serializable;
+
 /**
  *
  * @author Yehya Awad
  * 
  */
 
-public class Person {
+public class Person implements Serializable {
     
     private final String firstName;
     private final String lastName;

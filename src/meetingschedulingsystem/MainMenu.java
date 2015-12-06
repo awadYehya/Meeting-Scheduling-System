@@ -5,6 +5,7 @@
 */
 package meetingschedulingsystem;
 
+import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
 import java.util.ArrayList;
@@ -26,11 +27,18 @@ public class MainMenu extends javax.swing.JFrame {
         initSettings();
     }
     
+    /**
+     * Initializes the settings 
+     */
     private void initSettings() {
         this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
+//        Dimension maximumSize = new Dimension(2000, 271);
+//        Dimension minimumSize = new Dimension(890, 270);
+//        this.setMaximumSize(maximumSize);
+//        this.setMinimumSize(maximumSize);
     }
     
     /**
@@ -94,9 +102,9 @@ public class MainMenu extends javax.swing.JFrame {
         meetingsButton = new javax.swing.JButton();
         roomsButton = new javax.swing.JButton();
         peopleButton = new javax.swing.JButton();
-        settingsButton = new javax.swing.JButton();
-        jButton5 = new javax.swing.JButton();
+        loadSaveButton = new javax.swing.JButton();
         exitButton = new javax.swing.JButton();
+        searchButton = new javax.swing.JButton();
 
         jMenu1.setText("jMenu1");
 
@@ -161,17 +169,10 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
-        settingsButton.setText("Settings");
-        settingsButton.addActionListener(new java.awt.event.ActionListener() {
+        loadSaveButton.setText("Load/Save");
+        loadSaveButton.addActionListener(new java.awt.event.ActionListener() {
             public void actionPerformed(java.awt.event.ActionEvent evt) {
-                settingsButtonActionPerformed(evt);
-            }
-        });
-
-        jButton5.setText("About");
-        jButton5.addActionListener(new java.awt.event.ActionListener() {
-            public void actionPerformed(java.awt.event.ActionEvent evt) {
-                jButton5ActionPerformed(evt);
+                loadSaveButtonActionPerformed(evt);
             }
         });
 
@@ -182,6 +183,13 @@ public class MainMenu extends javax.swing.JFrame {
             }
         });
 
+        searchButton.setText("Search Timeslot");
+        searchButton.addActionListener(new java.awt.event.ActionListener() {
+            public void actionPerformed(java.awt.event.ActionEvent evt) {
+                searchButtonActionPerformed(evt);
+            }
+        });
+
         javax.swing.GroupLayout layout = new javax.swing.GroupLayout(getContentPane());
         getContentPane().setLayout(layout);
         layout.setHorizontalGroup(
@@ -189,17 +197,17 @@ public class MainMenu extends javax.swing.JFrame {
             .addGroup(layout.createSequentialGroup()
                 .addContainerGap()
                 .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 816, Short.MAX_VALUE)
+                    .addComponent(jLabel1, javax.swing.GroupLayout.DEFAULT_SIZE, 877, Short.MAX_VALUE)
                     .addGroup(layout.createSequentialGroup()
-                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING)
-                            .addComponent(meetingsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(roomsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(peopleButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(settingsButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(jButton5, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
+                        .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.TRAILING, false)
+                            .addComponent(loadSaveButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(peopleButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(roomsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(meetingsButton, javax.swing.GroupLayout.Alignment.LEADING, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(exitButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
+                            .addComponent(searchButton, javax.swing.GroupLayout.DEFAULT_SIZE, 160, Short.MAX_VALUE))
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 675, javax.swing.GroupLayout.PREFERRED_SIZE)))
+                        .addComponent(jScrollPane1)))
                 .addContainerGap())
         );
         layout.setVerticalGroup(
@@ -216,9 +224,9 @@ public class MainMenu extends javax.swing.JFrame {
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(peopleButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(settingsButton)
+                        .addComponent(loadSaveButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
-                        .addComponent(jButton5)
+                        .addComponent(searchButton)
                         .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.RELATED)
                         .addComponent(exitButton))
                     .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 0, Short.MAX_VALUE))
@@ -279,30 +287,40 @@ public class MainMenu extends javax.swing.JFrame {
         peoplemenu.setVisible(true);
     }//GEN-LAST:event_peopleButtonActionPerformed
     
-    private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_settingsButtonActionPerformed
-    
-    private void jButton5ActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_jButton5ActionPerformed
-        // TODO add your handling code here:
-    }//GEN-LAST:event_jButton5ActionPerformed
-    
+    private void loadSaveButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_loadSaveButtonActionPerformed
+        SaveLoadMenu slmenu = new SaveLoadMenu(this, true);
+        slmenu.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                initTable(); //To change body of generated methods, choose Tools | Templates.
+            }
+            @Override
+            public void windowClosing(WindowEvent e) {
+                initTable();
+            }
+        });
+    }//GEN-LAST:event_loadSaveButtonActionPerformed
+        
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
         System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
+
+    private void searchButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_searchButtonActionPerformed
+        SearchTimeSlotDialog search = new SearchTimeSlotDialog(this, true);
+    }//GEN-LAST:event_searchButtonActionPerformed
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;
     private javax.swing.Box.Filler filler3;
-    private javax.swing.JButton jButton5;
     private javax.swing.JLabel jLabel1;
     private javax.swing.JMenu jMenu1;
     private javax.swing.JMenu jMenu2;
     private javax.swing.JScrollPane jScrollPane1;
+    private javax.swing.JButton loadSaveButton;
     private javax.swing.JTable mTable;
     private javax.swing.JButton meetingsButton;
     private javax.swing.JButton peopleButton;
     private javax.swing.JButton roomsButton;
-    private javax.swing.JButton settingsButton;
+    private javax.swing.JButton searchButton;
     // End of variables declaration//GEN-END:variables
 }

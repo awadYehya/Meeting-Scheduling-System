@@ -24,7 +24,7 @@ import javax.swing.table.AbstractTableModel;
  * @author yha5009
  */
 public class RoomTableModel extends AbstractTableModel {
-    private final String[] columnNames = {"Room", "Number of Meetings", "Percentage Booked"}; //same as before...
+    private final String[] columnNames = {"Room", "Number of Meetings", "Slots taken"}; //same as before...
     private Object[][] data = {{}};//same as before...
     private ArrayList<Object[]> dataList = new ArrayList<>();
     private ArrayList<Room> roomsList = new ArrayList<>();
@@ -41,9 +41,8 @@ public class RoomTableModel extends AbstractTableModel {
     public void addRoom(Room room) {
         roomsList.add(room);
         int meetingNum = room.getMeetings().size();
-        Double percentBooked = 100*meetingNum/8.00;
         int remSlots = 8 - meetingNum;
-        Object[] roomData = {room.getID(), meetingNum, String.format("%.2f%s", percentBooked,"%")};
+        Object[] roomData = {room.getID(), meetingNum, String.format("   %d/8", meetingNum)};
         dataList.add(roomData);
         refreshTable();
     }

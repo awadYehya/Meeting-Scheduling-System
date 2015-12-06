@@ -16,7 +16,6 @@
  */
 package meetingschedulingsystem;
 
-import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +29,13 @@ import javax.swing.JOptionPane;
 public class AddMeetingDialog extends javax.swing.JDialog {
     
     private RoomListModel rlm = new RoomListModel();
+    
+    private final int MULTIPLE_INVALID = 0;
+    private final int TITLE_INVALID = 1;
+    private final int ROOM_INVALID = 2;
+    private final int TIMESLOT_INVALID = 3;
+    private final int TIMEOUTOFBOUNDS_INVALID = 4;
+    private final int DEFAULT_INVALID = 5;
     
     /**
      * Creates new form AddMeetingDialog
@@ -63,9 +69,20 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     private void initSettings() {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
+        String values[] = new String[] {
+            "9 AM", 
+            "10 AM", 
+            "11 AM", 
+            "12 PM", 
+            "1 PM", 
+            "2 PM", 
+            "3 PM", 
+            "4 PM"};
+        timeSpinner.setModel(new javax.swing.SpinnerListModel(values));
+        timeSpinner.setToolTipText("The meeting time.");
     }
     
-    private void createMeeting(String title, Room room, int timeSlot) {
+    private boolean createMeeting(String title, Room room, int timeSlot) {
         Meeting createdMeeting = new Meeting(title, room.getID(), timeSlot);
         List<Person> selectedattnds = attendeeList.getSelectedValuesList();
         if (!selectedattnds.isEmpty()) {
@@ -73,20 +90,42 @@ public class AddMeetingDialog extends javax.swing.JDialog {
                 createdMeeting.addAttendee(pers);
             }
         }
-        DataManager.addMeeting(createdMeeting);
+        boolean success = DataManager.addMeeting(createdMeeting);
+        return success;
     }
     
     private boolean isDataValid() {
+        String spinnerVal = timeSpinner.getValue().toString().substring(0, 2);
+        spinnerVal = spinnerVal.trim();
+        int spinnerTime = Integer.parseInt(spinnerVal);
         if (subjectField.getText().equals("") || subjectField.getText() == null) {
+            showDataInvalidDialog(TITLE_INVALID);
             return false;
-        } else if (roomList.getSelectedIndex() < 0) {
+        } else if (roomList.isSelectionEmpty()) {
+            showDataInvalidDialog(ROOM_INVALID);
+            return false;
+        } else if (spinnerTime < 9 && spinnerTime > 4) {
+            showDataInvalidDialog(TIMEOUTOFBOUNDS_INVALID);
             return false;
         }
         return true;
     }
     
-    private void showDataInvalidDialog() {
-        JOptionPane.showMessageDialog(this, "Invalid Data", "Please enter a title.", JOptionPane.WARNING_MESSAGE);
+    private void showDataInvalidDialog(int type) {
+        String errmsg;
+        
+        switch (type) {
+            case MULTIPLE_INVALID: errmsg = "Multiple invalid data."; break;
+            case TITLE_INVALID: errmsg = "Meeting title is missing."; break;
+            case ROOM_INVALID: errmsg = "Room not selected."; break;
+            case TIMESLOT_INVALID: errmsg = "Timeslot is taken.";break;
+            case TIMEOUTOFBOUNDS_INVALID: errmsg = "Time is out of range 9AM-4PM."; break;
+            default: errmsg = "Data is invalid.";
+        }
+        
+        JOptionPane.showMessageDialog(this, 
+                errmsg, "Invalid Data", 
+                JOptionPane.WARNING_MESSAGE);
     }
 
     /**
@@ -212,19 +251,24 @@ public class AddMeetingDialog extends javax.swing.JDialog {
 
     private void AddButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_AddButtonActionPerformed
         if (isDataValid()) {
+            String spinnerVal = timeSpinner.getValue().toString().substring(0, 2);
+            spinnerVal = spinnerVal.trim();
+            int spinnerTime = Integer.parseInt(spinnerVal);
             int selectedIndex = roomList.getSelectedIndex();
             System.out.println(selectedIndex);
             Room selectedRoom = rlm.get(selectedIndex);
-            createMeeting(subjectField.getText(),selectedRoom, 2);
+            boolean success = createMeeting(subjectField.getText(),selectedRoom, spinnerTime);
             try {
                 Thread.sleep(100);
             } catch (InterruptedException ex) {
                 Logger.getLogger(AddMeetingDialog.class.getName()).log(Level.SEVERE, null, ex);
             }
+            if (!success) {
+                showDataInvalidDialog(TIMESLOT_INVALID);
+                return;
+            }
             this.dispose();
-            return;
         }
-        showDataInvalidDialog();
     }//GEN-LAST:event_AddButtonActionPerformed
 
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed

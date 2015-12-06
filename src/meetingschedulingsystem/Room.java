@@ -16,6 +16,7 @@
  */
 package meetingschedulingsystem;
 
+import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
@@ -27,7 +28,7 @@ import java.util.ArrayList;
  * A class for room objects in this project
  * @author Yehya Awad
  */
-public class Room {
+public class Room implements Serializable{
     
     private final String ID;
     private ArrayList<Meeting> meetings;

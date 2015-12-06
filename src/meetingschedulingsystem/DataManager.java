@@ -17,6 +17,7 @@
 package meetingschedulingsystem;
 
 import java.util.ArrayList;
+import javax.swing.JOptionPane;
 
 /**
  *
@@ -95,6 +96,13 @@ public class DataManager {
      * @param room Room being added
      */
     public static void addRoom(Room room) {
+        for (Room rm: DataManager.rooms) {
+            if (rm.getID().equals(room.getID())){
+                JOptionPane.showMessageDialog(null,"Can't use ID: "+room.getID()
+                        +" as it is already being used.","Duplicate room",JOptionPane.ERROR_MESSAGE);
+                return;
+            }
+        }
         if (DataManager.rooms.contains(room)){
             throw new Error("Room already exists in Data.");
         }
@@ -104,16 +112,18 @@ public class DataManager {
     /**
      * Adds a meeting to the data ArrayList and to the corresponding room
      * @param meet Meeting being added to the data
+     * @return 
      */
-    public static void addMeeting(Meeting meet) {
+    public static boolean addMeeting(Meeting meet) {
         for (Room room : rooms) {
-            System.out.println("Trying room: "+room);
-            System.out.println("Meeting room: "+meet.getRoomID());
             if (room.getID().equals(meet.getRoomID())) {
+                if (room.isTimeslotTaken(meet.getTimeSlot())){
+                    return false;
+                }
                 meetings.add(meet);
                 room.addMeeting(meet); // Add meeting to the room
                 updateRoom(room);
-                return;
+                return true;
             }
         }
         throw new Error("Meeting being added to non-existent room.");
@@ -159,7 +169,6 @@ public class DataManager {
     public static void removeMeeting(Meeting meet) {
         for (Room room : rooms) {
             if (room.getID().equals(meet.getRoomID())) {
-                System.out.println("Room x Meeting match");
                 meetings.remove(meet);
                 room.removeMeeting(meet);
                 updateRoom(room);

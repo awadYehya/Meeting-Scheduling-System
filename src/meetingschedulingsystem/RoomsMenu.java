@@ -242,12 +242,33 @@ public class RoomsMenu extends javax.swing.JFrame {
      * @param evt 
      */
     private void addRoomButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addRoomButtonActionPerformed
-        AddRoomDialog addDialog = new AddRoomDialog(this, true);
+        AddRoomDialog addDialog = new AddRoomDialog();
         addDialog.addWindowListener(new WindowAdapter() {
             @Override
             public void windowClosed(WindowEvent e) {
                 updateModel();
             }
+
+            @Override
+            public void windowGainedFocus(WindowEvent e) {
+                updateModel();
+            }
+
+            @Override
+            public void windowStateChanged(WindowEvent e) {
+                updateModel();
+            }
+
+            @Override
+            public void windowDeactivated(WindowEvent e) {
+                updateModel();
+            }
+
+            @Override
+            public void windowActivated(WindowEvent e) {
+                updateModel();
+            }
+            
         });
     }//GEN-LAST:event_addRoomButtonActionPerformed
     /**

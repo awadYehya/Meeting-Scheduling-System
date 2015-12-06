@@ -237,12 +237,23 @@ public class PeopleMenu extends javax.swing.JFrame {
                 "Removing Person", JOptionPane.YES_NO_OPTION,
                 JOptionPane.WARNING_MESSAGE);
         if (confirmCancel == JOptionPane.YES_OPTION) {
+            int removeCount = 0;
+            boolean failRemove = false;
             for (int rowindx: selectedRows) {
                 Person selectedPerson = ptm.getPersonAtIndex(rowindx);
-                DataManager.removePerson(selectedPerson);
+                if (DataManager.removePerson(selectedPerson)) {
+                    removeCount++;
+                } else {
+                    failRemove = true;
+                }
+            }
+            if (failRemove) {
+                JOptionPane.showMessageDialog(this,"Failed to remove: "+(selectedRows.length-removeCount)
+                        +" person(s).\nYou cannot delete people attending meetings.", 
+                        "Fail remove", JOptionPane.ERROR_MESSAGE);
             }
             updateModel();
-            JOptionPane.showMessageDialog(this, "Person(s) removed succesfully.");
+            JOptionPane.showMessageDialog(this, removeCount+" Person(s) removed succesfully.");
         }
         meetingTable.clearSelection();
     }//GEN-LAST:event_delSelButtonActionPerformed

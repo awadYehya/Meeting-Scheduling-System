@@ -59,18 +59,18 @@
           <Group type="102" attributes="0">
               <EmptySpace max="-2" attributes="0"/>
               <Group type="103" groupAlignment="0" attributes="0">
-                  <Component id="jLabel1" pref="816" max="32767" attributes="0"/>
+                  <Component id="jLabel1" pref="877" max="32767" attributes="0"/>
                   <Group type="102" attributes="0">
-                      <Group type="103" groupAlignment="0" attributes="0">
-                          <Component id="meetingsButton" max="32767" attributes="0"/>
-                          <Component id="roomsButton" alignment="0" max="32767" attributes="0"/>
+                      <Group type="103" groupAlignment="1" max="-2" attributes="0">
+                          <Component id="loadSaveButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="peopleButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="settingsButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="jButton5" alignment="0" max="32767" attributes="0"/>
-                          <Component id="exitButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="roomsButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="meetingsButton" alignment="0" max="32767" attributes="0"/>
+                          <Component id="exitButton" max="32767" attributes="0"/>
+                          <Component id="searchButton" pref="160" max="32767" attributes="0"/>
                       </Group>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="675" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" max="32767" attributes="0"/>
                   </Group>
               </Group>
               <EmptySpace max="-2" attributes="0"/>
@@ -91,9 +91,9 @@
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="peopleButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="settingsButton" min="-2" max="-2" attributes="0"/>
+                      <Component id="loadSaveButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
-                      <Component id="jButton5" min="-2" max="-2" attributes="0"/>
+                      <Component id="searchButton" min="-2" max="-2" attributes="0"/>
                       <EmptySpace max="-2" attributes="0"/>
                       <Component id="exitButton" min="-2" max="-2" attributes="0"/>
                   </Group>
@@ -163,20 +163,12 @@
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="peopleButtonActionPerformed"/>
       </Events>
     </Component>
-    <Component class="javax.swing.JButton" name="settingsButton">
+    <Component class="javax.swing.JButton" name="loadSaveButton">
       <Properties>
-        <Property name="text" type="java.lang.String" value="Settings"/>
+        <Property name="text" type="java.lang.String" value="Load/Save"/>
       </Properties>
       <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="settingsButtonActionPerformed"/>
-      </Events>
-    </Component>
-    <Component class="javax.swing.JButton" name="jButton5">
-      <Properties>
-        <Property name="text" type="java.lang.String" value="About"/>
-      </Properties>
-      <Events>
-        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="jButton5ActionPerformed"/>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="loadSaveButtonActionPerformed"/>
       </Events>
     </Component>
     <Component class="javax.swing.JButton" name="exitButton">
@@ -185,6 +177,14 @@
       </Properties>
       <Events>
         <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="exitButtonActionPerformed"/>
+      </Events>
+    </Component>
+    <Component class="javax.swing.JButton" name="searchButton">
+      <Properties>
+        <Property name="text" type="java.lang.String" value="Search Timeslot"/>
+      </Properties>
+      <Events>
+        <EventHandler event="actionPerformed" listener="java.awt.event.ActionListener" parameters="java.awt.event.ActionEvent" handler="searchButtonActionPerformed"/>
       </Events>
     </Component>
   </SubComponents>
