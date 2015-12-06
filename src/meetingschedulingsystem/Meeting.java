@@ -117,4 +117,10 @@ public class Meeting {
         if (timeSlot == 12) tempTime = 12;
         return String.format("%s:00 %s", tempTime, ((timeSlot < 9) || (timeSlot == 12) ? "PM": "AM"));
     }
+
+    @Override
+    public String toString() {
+        return this.title+" at "+this.getFormattedTimeSlot();
+    }
+    
 }

@@ -17,8 +17,10 @@
 package meetingschedulingsystem;
 
 import java.util.ArrayList;
+import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
+import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
@@ -39,6 +41,7 @@ public class AddMeetingDialog extends javax.swing.JDialog {
         initComponents();
         initSettings();
         initRoomList();
+        initAttendeeList();
     }
     
     private void initRoomList() {
@@ -50,7 +53,11 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     }
     
     private void initAttendeeList() {
-        
+        DefaultListModel<Person> attndlm = new DefaultListModel<>();
+        for (Person pers : DataManager.getPeople()) {
+            attndlm.addElement(pers);
+        }
+        attendeeList.setModel(attndlm);
     }
     
     private void initSettings() {
@@ -60,6 +67,12 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     
     private void createMeeting(String title, Room room, int timeSlot) {
         Meeting createdMeeting = new Meeting(title, room.getID(), timeSlot);
+        List<Person> selectedattnds = attendeeList.getSelectedValuesList();
+        if (!selectedattnds.isEmpty()) {
+            for (Person pers : selectedattnds) {
+                createdMeeting.addAttendee(pers);
+            }
+        }
         DataManager.addMeeting(createdMeeting);
     }
     

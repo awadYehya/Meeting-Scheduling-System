@@ -36,7 +36,7 @@ public class ShowPersonDialog extends javax.swing.JDialog {
      * Creates new form ShowRoomDialog
      * @param parent
      * @param modal
-     * @param pers
+     * @param pers Person that will be shown in the dialog
      */
     public ShowPersonDialog(java.awt.Frame parent, boolean modal, Person pers) {
         super(parent, true); // always modal

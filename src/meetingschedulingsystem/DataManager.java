@@ -172,9 +172,14 @@ public class DataManager {
     /**
      * Removes a person
      * @param pers Person being removed
+     * @return Boolean true if removed, false if not removed
      */
-    public static void removePerson(Person pers) {
+    public static boolean removePerson(Person pers) {
+        if (getPersonMeetings(pers).size() > 0) {
+            return false;
+        }
         DataManager.people.remove(pers);
+        return true;
     }
     
     public static boolean doesRoomExist(Room room) {
@@ -188,5 +193,38 @@ public class DataManager {
             }
         }
         return false;
+    }
+    
+    /**
+     * Removes all meetings from a certain room and updates the Data in the manager
+     * @param room 
+     * @return  
+     */
+    public static Room clearMeetingsInRoom(Room room) {
+        ArrayList<Meeting> roomMeetings = new ArrayList<>(room.getMeetings());
+        for (Meeting meet : roomMeetings){
+            room.removeMeeting(meet);
+        }
+        updateRoom(room);
+        return room;
+    }
+    
+    /**
+     * 
+     * @param pers
+     * @return 
+     */
+    public static ArrayList<Meeting> getPersonMeetings(Person pers) {
+        ArrayList<Meeting> persMeetings = new ArrayList<>();
+        
+        for (Meeting meet : DataManager.meetings){
+            for (Person attnd : meet.getAttendees()){
+                if (pers.toString().equals(attnd.toString())) {
+                    persMeetings.add(meet);
+                }
+            }
+        } 
+        
+        return persMeetings;
     }
 }

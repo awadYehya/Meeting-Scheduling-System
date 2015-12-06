@@ -216,14 +216,14 @@ public class PeopleMenu extends javax.swing.JFrame {
     }// </editor-fold>//GEN-END:initComponents
     
     private void addNewButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_addNewButtonActionPerformed
-//        AddMeetingDialog addDialog = new AddMeetingDialog(this, true);
-//        addDialog.setVisible(true);
-//        addDialog.addWindowListener(new WindowAdapter() {
-//            @Override
-//            public void windowClosed(WindowEvent e) {
-//                updateModel();
-//            }
-//        });
+        AddPersonDialog addDialog = new AddPersonDialog(this, true);
+        addDialog.setVisible(true);
+        addDialog.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                updateModel();
+            }
+        });
     }//GEN-LAST:event_addNewButtonActionPerformed
     
     private void delSelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_delSelButtonActionPerformed

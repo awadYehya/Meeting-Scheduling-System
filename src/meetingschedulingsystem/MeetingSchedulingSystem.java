@@ -47,6 +47,8 @@ public class MeetingSchedulingSystem {
         DataManager.addRoom(room2);
         DataManager.addMeeting(sample1);
         DataManager.addMeeting(sample2);
+        Person me = new Person("Yehya", "Awad", "7174606012");
+        DataManager.addPerson(me);
     }
     
     /**

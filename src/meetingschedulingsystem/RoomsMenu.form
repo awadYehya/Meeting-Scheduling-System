@@ -31,11 +31,11 @@
                   </Group>
                   <Group type="102" alignment="0" attributes="0">
                       <EmptySpace min="0" pref="10" max="32767" attributes="0"/>
-                      <Component id="jScrollPane1" min="-2" pref="369" max="-2" attributes="0"/>
-                      <EmptySpace type="separate" max="-2" attributes="0"/>
+                      <Component id="jScrollPane1" min="-2" pref="375" max="-2" attributes="0"/>
+                      <EmptySpace type="unrelated" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="addRoomButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="deleteSelectedButton" alignment="0" pref="141" max="32767" attributes="0"/>
+                          <Component id="deleteSelectedButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="showSelectedButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>

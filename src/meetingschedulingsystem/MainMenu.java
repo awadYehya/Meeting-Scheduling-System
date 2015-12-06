@@ -5,7 +5,10 @@
 */
 package meetingschedulingsystem;
 
+import java.awt.event.WindowAdapter;
+import java.awt.event.WindowEvent;
 import java.util.ArrayList;
+import javax.swing.JFrame;
 import javax.swing.JTable;
 
 /**
@@ -20,6 +23,11 @@ public class MainMenu extends javax.swing.JFrame {
     public MainMenu() {
         initComponents();
         initTable();
+        initSettings();
+    }
+    
+    private void initSettings() {
+        this.setDefaultCloseOperation(JFrame.EXIT_ON_CLOSE);
         this.setLocationRelativeTo(null);
         this.setVisible(true);
         this.setResizable(false);
@@ -223,15 +231,52 @@ public class MainMenu extends javax.swing.JFrame {
     private void meetingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_meetingsButtonActionPerformed
         MeetingsMenu meetingsmenu = new MeetingsMenu();
         meetingsmenu.setVisible(true);
+        meetingsmenu.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                initTable(); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                initTable();
+            }
+            
+        });
     }//GEN-LAST:event_meetingsButtonActionPerformed
     
     private void roomsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_roomsButtonActionPerformed
         RoomsMenu roomsmenu = new RoomsMenu();
         roomsmenu.setVisible(true);
+        roomsmenu.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                initTable(); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                initTable();
+            }
+            
+        });
     }//GEN-LAST:event_roomsButtonActionPerformed
     
     private void peopleButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_peopleButtonActionPerformed
-        // TODO add your handling code here:
+        PeopleMenu peoplemenu = new PeopleMenu();
+        peoplemenu.addWindowListener(new WindowAdapter() {
+            @Override
+            public void windowClosed(WindowEvent e) {
+                initTable(); //To change body of generated methods, choose Tools | Templates.
+            }
+
+            @Override
+            public void windowClosing(WindowEvent e) {
+                initTable();
+            }
+            
+        });
+        peoplemenu.setVisible(true);
     }//GEN-LAST:event_peopleButtonActionPerformed
     
     private void settingsButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_settingsButtonActionPerformed
@@ -243,43 +288,8 @@ public class MainMenu extends javax.swing.JFrame {
     }//GEN-LAST:event_jButton5ActionPerformed
     
     private void exitButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_exitButtonActionPerformed
-        this.dispose();
+        System.exit(0);
     }//GEN-LAST:event_exitButtonActionPerformed
-    
-    /**
-     * @param args the command line arguments
-     */
-    public static void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-        * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html
-        */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(MainMenu.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-        
-        /* Create and display the form */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                new MainMenu().setVisible(true);
-//            }
-//        });
-    }
     
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton exitButton;

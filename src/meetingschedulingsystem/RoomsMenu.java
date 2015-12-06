@@ -18,6 +18,7 @@ package meetingschedulingsystem;
 
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
+import java.util.ArrayList;
 import javax.swing.JFrame;
 import javax.swing.JOptionPane;
 import javax.swing.JTable;
@@ -209,11 +210,11 @@ public class RoomsMenu extends javax.swing.JFrame {
                         .addComponent(jLabel2, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))
                     .addGroup(layout.createSequentialGroup()
                         .addGap(0, 10, Short.MAX_VALUE)
-                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 369, javax.swing.GroupLayout.PREFERRED_SIZE)
-                        .addGap(18, 18, 18)
+                        .addComponent(jScrollPane1, javax.swing.GroupLayout.PREFERRED_SIZE, 375, javax.swing.GroupLayout.PREFERRED_SIZE)
+                        .addPreferredGap(javax.swing.LayoutStyle.ComponentPlacement.UNRELATED)
                         .addGroup(layout.createParallelGroup(javax.swing.GroupLayout.Alignment.LEADING, false)
                             .addComponent(addRoomButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
-                            .addComponent(deleteSelectedButton, javax.swing.GroupLayout.DEFAULT_SIZE, 141, Short.MAX_VALUE)
+                            .addComponent(deleteSelectedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE)
                             .addComponent(showSelectedButton, javax.swing.GroupLayout.DEFAULT_SIZE, javax.swing.GroupLayout.DEFAULT_SIZE, Short.MAX_VALUE))))
                 .addContainerGap())
         );
@@ -262,16 +263,28 @@ public class RoomsMenu extends javax.swing.JFrame {
         int [] selectedRows = roomsTable.getSelectedRows();
         int confirmCancel = confirmDeleteDialog();
         if (confirmCancel == JOptionPane.YES_OPTION) {
+            ArrayList<String> cantRemove = new ArrayList<>();
             for (int rowindx: selectedRows) {
                 Room selectedRoom;
                 selectedRoom = rtm.getRoomAtIndex(rowindx);
                 if (DataManager.removeRoom(selectedRoom)) {
                 } else {
                     // TODO: pops new dialog
+                    cantRemove.add(selectedRoom.getID());
                     System.out.println("Could not remove: "+selectedRoom);
                     continue;
                 }
                 removeCount += 1;
+            }
+            if (!cantRemove.isEmpty()) {
+                String cntRmv = "";
+                for (String str : cantRemove) {
+                    cntRmv += str + ", ";
+                }
+                JOptionPane.showMessageDialog(this,
+                        "Couldnt remove: "+cntRmv+"\n These rooms have meetings in them.",
+                        "Remove Failure",
+                        JOptionPane.ERROR_MESSAGE);
             }
             updateModel();
             JOptionPane.showMessageDialog(this, removeCount+" Room(s) deleted succesfully.");
@@ -289,15 +302,8 @@ public class RoomsMenu extends javax.swing.JFrame {
         }
         int selectedRow = roomsTable.getSelectedRow();
         Room selectedRoom = rtm.getRoomAtIndex(selectedRow);
-        ShowMeetingDialog showmeetingd = new ShowMeetingDialog(new Meeting("X", "1", 2)); // FIX THIS SHIT
-        showmeetingd.addWindowListener(new WindowAdapter() {
-            @Override
-            public void windowClosed(WindowEvent e) {
-                super.windowClosed(e); //To change body of generated methods, choose Tools | Templates.
-                updateModel();
-            }
-        });
-        showmeetingd.setVisible(true);
+        ShowRoomDialog showroom = new ShowRoomDialog(this, rootPaneCheckingEnabled, selectedRoom);
+        showroom.setVisible(true);
         roomsTable.clearSelection();
     }//GEN-LAST:event_showSelectedButtonActionPerformed
     

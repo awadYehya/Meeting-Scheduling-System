@@ -25,11 +25,12 @@ import javax.swing.table.AbstractTableModel;
  */
 public class MeetingTableModel extends AbstractTableModel {
     private final String[] columnNames = {"Title", "Room", "Time", "Attendees"};//same as before...
-    private Object[][] data = {{}};//same as before...
-    private ArrayList<Object[]> dataList = new ArrayList<>();
-    private ArrayList<Meeting> meetingsList = new ArrayList<>();
+    private Object[][] data;
+    private final ArrayList<Object[]> dataList = new ArrayList<>();
+    private final ArrayList<Meeting> meetingsList = new ArrayList<>();
 
     public MeetingTableModel() {
+        this.data = new Object[][]{};
     }
     
     public void clearData() {
