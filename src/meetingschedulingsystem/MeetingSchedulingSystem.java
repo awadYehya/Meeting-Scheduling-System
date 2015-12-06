@@ -17,8 +17,6 @@
 
 package meetingschedulingsystem;
 
-import java.util.ArrayList;
-
 /**
  *
  * @author Yehya Awad
@@ -52,7 +50,7 @@ public class MeetingSchedulingSystem {
     }
     
     /**
-     * Initializes application
+     * Initializes GUI of application
      */
     public static void initGUI() {
         LoadingFrame load = new LoadingFrame();
