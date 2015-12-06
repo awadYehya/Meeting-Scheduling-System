@@ -23,6 +23,10 @@ import java.util.ArrayList;
  * @author yha5009
  */
 
+/**
+ * A class for room objects in this project
+ * @author Yehya Awad
+ */
 public class Room {
     
     private final String ID;
