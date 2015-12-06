@@ -37,6 +37,9 @@ public class LoadingFrame extends javax.swing.JFrame {
         load();
     }
     
+    /**
+     * Loading messages initialization
+     */
     private void initLoadingMessages() {
         String [] tempLoadingMessage = {
             "Loading.",
@@ -48,6 +51,9 @@ public class LoadingFrame extends javax.swing.JFrame {
         this.loadingmessages = tempLoadingMessage;
     }
     
+    /**
+     * Do load
+     */
     private void load() {
         loadingBar.setMaximum(100);
         loadingBar.setMinimum(0);

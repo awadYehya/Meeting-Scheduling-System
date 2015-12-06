@@ -163,9 +163,9 @@ public class SaveLoadMenu extends javax.swing.JDialog {
                 Logger.getLogger(SaveLoadMenu.class.getName()).log(Level.SEVERE, null, ex);
             }
 
-            if (obj instanceof Data)
+            if (obj instanceof MeetingDataFile)
             {
-                Data dat = (Data) obj;
+                MeetingDataFile dat = (MeetingDataFile) obj;
                 DataManager.clear();
                 DataManager.init(dat.getRooms(), dat.getPeople(), dat.getMeetings());
                 showLoadSuccess(file.getName());
@@ -204,7 +204,7 @@ public class SaveLoadMenu extends javax.swing.JDialog {
                 return;
             }
             // get data
-            Data alldata = new Data(
+            MeetingDataFile alldata = new MeetingDataFile(
                     DataManager.getRooms(), 
                     DataManager.getPeople(), 
                     DataManager.getMeetings());

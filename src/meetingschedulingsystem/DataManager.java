@@ -29,12 +29,21 @@ public class DataManager {
     private static ArrayList<Person> people;
     private static ArrayList<Meeting> meetings;
 
+    /**
+     * Initializes the static class with array lists
+     * @param rooms
+     * @param people
+     * @param meetings 
+     */
     public static void init(ArrayList<Room> rooms, ArrayList<Person> people, ArrayList<Meeting> meetings) {
         DataManager.rooms = rooms;
         DataManager.people = people;
         DataManager.meetings = meetings;
     }
     
+    /**
+     * initializes the static class with empty array lists.
+     */
     public static void init() {
         init(new ArrayList<>(),new ArrayList<>(),new ArrayList<>());
     }
@@ -48,30 +57,29 @@ public class DataManager {
         meetings = new ArrayList<>();
     }
     
-    
+    /**
+     * returns rooms
+     * @return 
+     */
     public static ArrayList<Room> getRooms() {
         return rooms;
     }
 
-//    public static void setRooms(ArrayList<Room> rooms) {
-//        DataManager.rooms = rooms;
-//    }
-
+    /**
+     * returns people
+     * @return 
+     */
     public static ArrayList<Person> getPeople() {
         return people;
     }
 
-//    public static void setPeople(ArrayList<Person> people) {
-//        DataManager.people = people;
-//    }
-
+    /**
+     * returns meetings
+     * @return 
+     */
     public static ArrayList<Meeting> getMeetings() {
         return meetings;
     }
-
-//    public static void setMeetings(ArrayList<Meeting> meetings) {
-//        DataManager.meetings = meetings;
-//    }
 
     /** Updates a room with new data
      * 
@@ -129,6 +137,10 @@ public class DataManager {
         throw new Error("Meeting being added to non-existent room.");
     }
     
+    /**
+     * Adds a person to the data
+     * @param pers 
+     */
     public static void addPerson(Person pers) {
         if (DataManager.people.contains(pers)) {
             throw new Error("Person already in data.");
@@ -219,7 +231,7 @@ public class DataManager {
     }
     
     /**
-     * 
+     * Returns all the meetings a person is attending
      * @param pers
      * @return 
      */

@@ -16,6 +16,7 @@
  */
 package meetingschedulingsystem;
 
+import java.util.ArrayList;
 import java.util.List;
 import java.util.logging.Level;
 import java.util.logging.Logger;
@@ -30,6 +31,9 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     
     private RoomListModel rlm = new RoomListModel();
     
+    /*
+     * Contstants for use with dialog
+     */
     private final int MULTIPLE_INVALID = 0;
     private final int TITLE_INVALID = 1;
     private final int ROOM_INVALID = 2;
@@ -50,6 +54,9 @@ public class AddMeetingDialog extends javax.swing.JDialog {
         initAttendeeList();
     }
     
+    /**
+     * Initialize Room List
+     */
     private void initRoomList() {
         rlm.clear();
         for (Room room : DataManager.getRooms()) {
@@ -58,6 +65,9 @@ public class AddMeetingDialog extends javax.swing.JDialog {
         roomList.setModel(rlm);
     }
     
+    /**
+     * Initialize Attendee List
+     */
     private void initAttendeeList() {
         DefaultListModel<Person> attndlm = new DefaultListModel<>();
         for (Person pers : DataManager.getPeople()) {
@@ -66,6 +76,9 @@ public class AddMeetingDialog extends javax.swing.JDialog {
         attendeeList.setModel(attndlm);
     }
     
+    /**
+     * Initialize settings
+     */
     private void initSettings() {
         this.setResizable(false);
         this.setLocationRelativeTo(null);
@@ -82,18 +95,42 @@ public class AddMeetingDialog extends javax.swing.JDialog {
         timeSpinner.setToolTipText("The meeting time.");
     }
     
+    /**
+     * Creates a meeting
+     * @param title
+     * @param room
+     * @param timeSlot
+     * @return 
+     */
     private boolean createMeeting(String title, Room room, int timeSlot) {
         Meeting createdMeeting = new Meeting(title, room.getID(), timeSlot);
         List<Person> selectedattnds = attendeeList.getSelectedValuesList();
         if (!selectedattnds.isEmpty()) {
             for (Person pers : selectedattnds) {
-                createdMeeting.addAttendee(pers);
+                ArrayList<Meeting> meets = DataManager.getPersonMeetings(pers);
+                boolean personBusy = false;
+                for (Meeting meet : meets){
+                    if (meet.getTimeSlot() == timeSlot){
+                        personBusy = true; break;
+                    }
+                }
+                if (!personBusy){
+                    createdMeeting.addAttendee(pers);
+                    continue;
+                }
+                JOptionPane.showMessageDialog(this,pers.getFirstName()+" is busy at that time.\n"
+                        + "Cannot schedule him at that time.", 
+                        "Scheduling Error", JOptionPane.ERROR_MESSAGE);
             }
         }
         boolean success = DataManager.addMeeting(createdMeeting);
         return success;
     }
     
+    /**
+     * Checks validity of form
+     * @return 
+     */
     private boolean isDataValid() {
         String spinnerVal = timeSpinner.getValue().toString().substring(0, 2);
         spinnerVal = spinnerVal.trim();
@@ -111,6 +148,10 @@ public class AddMeetingDialog extends javax.swing.JDialog {
         return true;
     }
     
+    /**
+     * Shows dialog for invalid
+     * @param type 
+     */
     private void showDataInvalidDialog(int type) {
         String errmsg;
         
@@ -274,48 +315,6 @@ public class AddMeetingDialog extends javax.swing.JDialog {
     private void CancelButtonActionPerformed(java.awt.event.ActionEvent evt) {//GEN-FIRST:event_CancelButtonActionPerformed
         this.dispose();
     }//GEN-LAST:event_CancelButtonActionPerformed
-
-    /**
-     * @param args the command line arguments
-     */
-    public void main(String args[]) {
-        /* Set the Nimbus look and feel */
-        //<editor-fold defaultstate="collapsed" desc=" Look and feel setting code (optional) ">
-        /* If Nimbus (introduced in Java SE 6) is not available, stay with the default look and feel.
-         * For details see http://download.oracle.com/javase/tutorial/uiswing/lookandfeel/plaf.html 
-         */
-        try {
-            for (javax.swing.UIManager.LookAndFeelInfo info : javax.swing.UIManager.getInstalledLookAndFeels()) {
-                if ("Nimbus".equals(info.getName())) {
-                    javax.swing.UIManager.setLookAndFeel(info.getClassName());
-                    break;
-                }
-            }
-        } catch (ClassNotFoundException ex) {
-            java.util.logging.Logger.getLogger(AddMeetingDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (InstantiationException ex) {
-            java.util.logging.Logger.getLogger(AddMeetingDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (IllegalAccessException ex) {
-            java.util.logging.Logger.getLogger(AddMeetingDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        } catch (javax.swing.UnsupportedLookAndFeelException ex) {
-            java.util.logging.Logger.getLogger(AddMeetingDialog.class.getName()).log(java.util.logging.Level.SEVERE, null, ex);
-        }
-        //</editor-fold>
-
-//        /* Create and display the dialog */
-//        java.awt.EventQueue.invokeLater(new Runnable() {
-//            public void run() {
-//                AddMeetingDialog dialog = new AddMeetingDialog(new javax.swing.JFrame(), true);
-//                dialog.addWindowListener(new java.awt.event.WindowAdapter() {
-//                    @Override
-//                    public void windowClosing(java.awt.event.WindowEvent e) {
-//                        System.exit(0);
-//                    }
-//                });
-//                dialog.setVisible(true);
-//            }
-//        });
-    }
 
     // Variables declaration - do not modify//GEN-BEGIN:variables
     private javax.swing.JButton AddButton;

@@ -97,14 +97,26 @@ public class Meeting implements Serializable {
         return remove;
     }
 
+    /**
+     * Return the ID
+     * @return 
+     */
     public long getID() {
         return ID;
     }
 
+    /**
+     * Return the title
+     * @return 
+     */
     public String getTitle() {
         return title;
     }
-
+    
+    /**
+     * Returns all attendeees
+     * @return 
+     */
     public ArrayList<Person> getAttendees() {
         return attendees;
     }
@@ -124,6 +136,10 @@ public class Meeting implements Serializable {
         return this.title+" at "+this.getFormattedTimeSlot();
     }
     
+    /**
+     * Returns a formatted string will more data
+     * @return 
+     */
     public String fullString() {
         return this.toString()+" in room "+this.roomID;
     }

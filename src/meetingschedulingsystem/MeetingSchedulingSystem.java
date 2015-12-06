@@ -49,9 +49,10 @@ public class MeetingSchedulingSystem {
         DataManager.addRoom(room3);
         boolean x = DataManager.addMeeting(sample1);
         boolean y = DataManager.addMeeting(sample2);
-        Person me = new Person("Yehya", "Awad", "7174606012");
-        Person pers1 = new Person("John", "Doe", "1239890123");
+        Person me = new Person("Yehya", "Awad", "717-460-6012");
+        Person pers1 = new Person("John", "Doe", "123-989-0123");
         DataManager.addPerson(me);
+        DataManager.addPerson(pers1);
     }
     
     /**

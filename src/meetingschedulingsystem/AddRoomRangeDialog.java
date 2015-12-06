@@ -44,10 +44,21 @@ public class AddRoomRangeDialog extends javax.swing.JDialog {
         this.setResizable(false);
     }
     
+    /**
+     * Shows dialog for invalid input
+     */
     private void showInvalidDialog() {
-        JOptionPane.showMessageDialog(this, "Invalid input. Start must be smaller than last, and the range must be less than 20.", "Room input" , JOptionPane.WARNING_MESSAGE);
+        JOptionPane.showMessageDialog(this, 
+                "Invalid input. Start must be smaller than last, "
+                        + "and the range must be less than 20.", 
+                "Room input" , 
+                JOptionPane.WARNING_MESSAGE);
     }
     
+    /**
+     * Checks form validity
+     * @return 
+     */
     private boolean isInputValid() {
         Integer startNum = 0;
         Integer endNum = 0;

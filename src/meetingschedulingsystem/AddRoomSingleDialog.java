@@ -44,10 +44,17 @@ public class AddRoomSingleDialog extends javax.swing.JDialog {
         this.setResizable(false);
     }
     
+    /**
+     * Show invalid input dialog
+     */
     private void showInvalidDialog() {
         JOptionPane.showMessageDialog(this, "Invalid input.", "Room input" , JOptionPane.WARNING_MESSAGE);
     }
     
+    /**
+     * Checks form validity
+     * @return 
+     */
     private boolean isInputValid() {
         if ("".equals(roomIDField.getText())) {
             showInvalidDialog();

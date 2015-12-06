@@ -16,10 +16,7 @@
  */
 package meetingschedulingsystem;
 
-import java.text.ParseException;
-import javax.swing.JFormattedTextField;
 import javax.swing.JOptionPane;
-import javax.swing.text.NumberFormatter;
 
 /**
  *
@@ -37,33 +34,10 @@ public class AddPersonDialog extends javax.swing.JDialog {
         initComponents();
     }
     
-    private void initPhoneField() {
-//        class PhoneNumberFormatter extends JFormattedTextField.AbstractFormatterFactory {
-//            
-//            class PhoneFormatter extends JFormattedTextField.AbstractFormatter {
-//
-//                @Override
-//                public Object stringToValue(String text) throws ParseException {
-//                    
-//                }
-//
-//                @Override
-//                public String valueToString(Object value) throws ParseException {
-//                    v
-//                }
-//                
-//            }
-//            
-//            @Override
-//            public JFormattedTextField.AbstractFormatter getFormatter(JFormattedTextField tf) {
-//                throw new UnsupportedOperationException("Not supported yet."); //To change body of generated methods, choose Tools | Templates.
-//            }
-//    
-//        }
-//        
-        //phoneFField.setFormatterFactory(tf);
-    }
-    
+    /**
+     * Checks form validity
+     * @return 
+     */
     private boolean isInputValid() {
         if (firstNameField.getText().equals("") || 
                 lastNameField.getText().equals("") ||
@@ -71,15 +45,35 @@ public class AddPersonDialog extends javax.swing.JDialog {
             showInvalidInputDialog();
             return false;
         }
+        if (!phoneFField.getText().matches("\\d{3}-\\d{3}-\\d{4}")) {
+            showInvalidPhoneFormat();
+            return false;
+        }
         return true;
     }
     
+    /**
+     * Shows dialog for invalid phone input
+     */
+    private void showInvalidPhoneFormat() {
+        JOptionPane.showMessageDialog(this, "Invalid phone foramt.\nUse XXX-XXX-XXXX format.", 
+                "Phone Format" , 
+                JOptionPane.WARNING_MESSAGE);
+    }
+    
+    /**
+     * Shows dialog for invalid input
+     */
     private void showInvalidInputDialog() {
         JOptionPane.showMessageDialog(this, "Invalid input. Please fill all fields.", 
                 "Add Person" , 
                 JOptionPane.WARNING_MESSAGE);
     }
     
+    /**
+     * Creates a person using form input
+     * @return 
+     */
     private boolean createPerson() {
         String firstName = firstNameField.getText();
         String lastName = lastNameField.getText();
