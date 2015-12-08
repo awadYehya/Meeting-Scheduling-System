@@ -135,6 +135,7 @@
             </Property>
             <Property name="autoResizeMode" type="int" value="4"/>
             <Property name="requestFocusEnabled" type="boolean" value="false"/>
+            <Property name="showGrid" type="boolean" value="true"/>
           </Properties>
         </Component>
       </SubComponents>

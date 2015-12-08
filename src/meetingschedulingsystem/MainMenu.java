@@ -5,6 +5,7 @@
 */
 package meetingschedulingsystem;
 
+import java.awt.Color;
 import java.awt.Dimension;
 import java.awt.event.WindowAdapter;
 import java.awt.event.WindowEvent;
@@ -47,6 +48,7 @@ public class MainMenu extends javax.swing.JFrame {
     private void initTable() {
         mTable.setAutoResizeMode(JTable.AUTO_RESIZE_OFF);
         mTable.getTableHeader().setReorderingAllowed(false);
+        mTable.setGridColor(Color.gray);
         String [] initCols = new String [9];
         Object [][] initData = getTableData();
         
@@ -146,6 +148,7 @@ public class MainMenu extends javax.swing.JFrame {
         });
         mTable.setAutoResizeMode(javax.swing.JTable.AUTO_RESIZE_ALL_COLUMNS);
         mTable.setRequestFocusEnabled(false);
+        mTable.setShowGrid(true);
         jScrollPane1.setViewportView(mTable);
 
         meetingsButton.setText("Meetings");
