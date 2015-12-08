@@ -49,7 +49,24 @@ public class AddPersonDialog extends javax.swing.JDialog {
             showInvalidPhoneFormat();
             return false;
         }
+        for (Person pers : DataManager.getPeople()){
+            if (pers.getFirstName().toLowerCase().equals(firstNameField.getText().toLowerCase())){
+                if (pers.getLastName().toLowerCase().equals(lastNameField.getText().toLowerCase())){
+                    showDuplicatePersonError();
+                    return false;
+                }
+            }
+        }
         return true;
+    }
+    
+    /**
+     * Shows dialog for invalid phone input
+     */
+    private void showDuplicatePersonError() {
+        JOptionPane.showMessageDialog(this, "This person already exists. You can't have duplicate names.",
+                "Error", 
+                JOptionPane.WARNING_MESSAGE);
     }
     
     /**
