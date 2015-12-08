@@ -16,12 +16,12 @@
  */
 package meetingschedulingsystem;
 
-import java.awt.Frame;
 import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * This is the dialog that opens when you want to view the attendees of a meeting, can be opened on the MeetingsMenu.
+ * This is when you select a meeting and click "Show first selected"
  * @author yha5009
  */
 public class ShowMeetingDialog extends javax.swing.JFrame {

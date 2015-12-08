@@ -17,7 +17,7 @@
 package meetingschedulingsystem;
 
 /**
- *
+ * The initial dialog where you select to add single or multiple rooms
  * @author yehyaawad
  */
 public class AddRoomDialog extends javax.swing.JFrame {

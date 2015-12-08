@@ -25,12 +25,11 @@ import java.io.ObjectInputStream;
 import java.io.ObjectOutputStream;
 import java.util.logging.Level;
 import java.util.logging.Logger;
-import javafx.stage.FileChooser;
 import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The load/save menu. This menu opens when you click on "Load/Save" on the MainMenu.
  * @author yehyaawad
  */
 public class SaveLoadMenu extends javax.swing.JDialog {

@@ -18,11 +18,11 @@ package meetingschedulingsystem;
 
 
 
-import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- * Dialog for a room
+ * This is the dialog that opens when you want to view the meetings a room has booked, it can be opened on the RoomsMenu.
+ * This is when you select a room and click "Show first selected"
  * @author Yehya Awad
  */
 public class ShowRoomDialog extends javax.swing.JDialog {

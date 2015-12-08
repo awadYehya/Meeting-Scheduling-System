@@ -26,7 +26,8 @@ import javax.swing.event.ListSelectionEvent;
 import javax.swing.event.ListSelectionListener;
 
 /**
- *
+ * The menu that appears when you click "Meetings" on main menu.
+ * Provides all the functionality regarding meetings.
  * @author yha5009
  */
 public class MeetingsMenu extends javax.swing.JFrame {

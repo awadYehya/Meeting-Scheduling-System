@@ -21,8 +21,9 @@ import java.util.ArrayList;
 
 /**
  * This is the object used to store information on file.
- * It is a serializable class that is directly stored as binary data and then
- * read directly into a class instance.
+ * It is a serializable class that is directly stored as binary data when saving, and then
+ * read directly into a class instance when loading. All instance ArrayLists contained in this class are also
+ * serializable.
  * @author yehyaawad
  */
 public class MeetingDataFile implements Serializable {

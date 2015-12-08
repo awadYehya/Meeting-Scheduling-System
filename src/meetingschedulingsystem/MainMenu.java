@@ -14,7 +14,7 @@ import javax.swing.JFrame;
 import javax.swing.JTable;
 
 /**
- *
+ * Main (initial) menu of the program which also displays the day schedule.
  * @author yha5009
  */
 public class MainMenu extends javax.swing.JFrame {
@@ -117,7 +117,7 @@ public class MainMenu extends javax.swing.JFrame {
 
         jLabel1.setFont(new java.awt.Font("Tahoma", 0, 14)); // NOI18N
         jLabel1.setHorizontalAlignment(javax.swing.SwingConstants.CENTER);
-        jLabel1.setText("Meetings Pro + Super Private PSU Edition 7000");
+        jLabel1.setText("Meeting Scheduling System");
         jLabel1.setName("MeetingsPro"); // NOI18N
 
         mTable.setModel(new javax.swing.table.DefaultTableModel(

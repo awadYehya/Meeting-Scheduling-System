@@ -19,7 +19,7 @@ package meetingschedulingsystem;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The dialog for adding a person
  * @author yehyaawad
  */
 public class AddPersonDialog extends javax.swing.JDialog {

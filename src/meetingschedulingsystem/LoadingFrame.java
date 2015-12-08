@@ -17,7 +17,7 @@
 package meetingschedulingsystem;
 
 /**
- *
+ * A loading frame to visualize the loading progress.
  * @author yha5009
  */
 

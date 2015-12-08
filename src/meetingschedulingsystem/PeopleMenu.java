@@ -24,7 +24,8 @@ import javax.swing.JTable;
 import javax.swing.ListSelectionModel;
 
 /**
- *
+ * The menu that appears when you click "People" on main menu.
+ * Provides all the functionality regarding people.
  * @author yha5009
  */
 public class PeopleMenu extends javax.swing.JFrame {

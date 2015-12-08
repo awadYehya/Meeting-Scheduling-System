@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
+ * A table model for the MeetingTable used on the MeetingsMenu. 
+ * It is an extension of AbstractTableModel with extra functionality.
  * @author yha5009
  */
 public class MeetingTableModel extends AbstractTableModel {

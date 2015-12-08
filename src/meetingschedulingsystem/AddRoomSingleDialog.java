@@ -19,7 +19,7 @@ package meetingschedulingsystem;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Adds a single room using an ID that is inputed
  * @author yha5009
  */
 public class AddRoomSingleDialog extends javax.swing.JDialog {

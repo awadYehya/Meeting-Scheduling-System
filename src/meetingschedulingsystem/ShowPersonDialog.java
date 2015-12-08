@@ -21,7 +21,8 @@ package meetingschedulingsystem;
 import javax.swing.DefaultListModel;
 
 /**
- * Dialog for a room
+ * This is the dialog that opens when you want to view the meetings a person is attending, can be opened on the PeopleMenu.
+ * This is when you select a person and click "Show first selected"
  * @author Yehya Awad
  */
 public class ShowPersonDialog extends javax.swing.JDialog {

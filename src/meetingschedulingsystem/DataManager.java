@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * Manages all data by providing an API for other classes to access/change data.  
+ * These include all the rooms, all the persons, and all the meetings
  * @author Yehya Awad
  */
 public class DataManager {

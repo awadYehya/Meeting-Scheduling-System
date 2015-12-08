@@ -20,7 +20,8 @@ import java.util.ArrayList;
 import javax.swing.table.AbstractTableModel;
 
 /**
- *
+ * A table model for the PeopleTable used on the PeopleMenu. 
+ * It is an extension of AbstractTableModel with extra functionality.
  * @author yha5009
  */
 public class PeopleTableModel extends AbstractTableModel {

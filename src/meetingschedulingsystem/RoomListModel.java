@@ -19,7 +19,8 @@ package meetingschedulingsystem;
 import javax.swing.DefaultListModel;
 
 /**
- *
+ * A list model used with JLists specifically designed for rooms. Used in multiple areas where a JList for rooms
+ * is used.
  * @author yha5009
  */
 public class RoomListModel extends DefaultListModel<Room> {

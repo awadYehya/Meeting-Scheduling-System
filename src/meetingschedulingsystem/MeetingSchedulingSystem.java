@@ -18,7 +18,7 @@
 package meetingschedulingsystem;
 
 /**
- *
+ * The main class. This contains the main() function that initializes components of the program, adds sample data, and the GUI,
  * @author Yehya Awad
  * 
  */

@@ -35,7 +35,7 @@
                       <EmptySpace type="separate" max="-2" attributes="0"/>
                       <Group type="103" groupAlignment="0" max="-2" attributes="0">
                           <Component id="addNewButton" alignment="0" max="32767" attributes="0"/>
-                          <Component id="delSelButton" alignment="0" pref="141" max="32767" attributes="0"/>
+                          <Component id="delSelButton" alignment="0" max="32767" attributes="0"/>
                           <Component id="showSelButton" alignment="0" max="32767" attributes="0"/>
                       </Group>
                   </Group>

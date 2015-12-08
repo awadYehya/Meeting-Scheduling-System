@@ -19,7 +19,8 @@ package meetingschedulingsystem;
 import javax.swing.JOptionPane;
 
 /**
- *
+ * The dialog for adding multiple rooms. You input two numbers such as 1 and 5,
+ * and rooms 1, 2, 3, 4, and 5 will be created.
  * @author yha5009
  */
 public class AddRoomRangeDialog extends javax.swing.JDialog {

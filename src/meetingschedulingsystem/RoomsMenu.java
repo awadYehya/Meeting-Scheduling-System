@@ -24,7 +24,8 @@ import javax.swing.JOptionPane;
 import javax.swing.JTable;
 
 /**
- *
+ * The menu that appears when you click "Rooms" on main menu.
+ * Provides all the functionality regarding rooms.
  * @author yha5009
  */
 public class RoomsMenu extends javax.swing.JFrame {

@@ -19,7 +19,7 @@ package meetingschedulingsystem;
 import javax.swing.DefaultListModel;
 
 /**
- *
+ * This is the dialog that allows you to search for all the meetings at a specific timeslot.
  * @author yehyaawad
  */
 public class SearchTimeSlotDialog extends javax.swing.JDialog {

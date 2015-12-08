@@ -19,7 +19,8 @@ package meetingschedulingsystem;
 import javax.swing.table.DefaultTableModel;
 
 /**
- *
+ * The table model used to manage data in the MeetingScheduleTable that is used on the MainMenu.
+ * It is an extension of the DefaultTableModel, but with added custom functionality to ease it's use.
  * @author yha5009
  */
 public class MeetingScheduleTableModel extends DefaultTableModel {
