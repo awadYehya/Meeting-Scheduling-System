@@ -24,7 +24,7 @@ import javax.swing.DefaultListModel;
 import javax.swing.JOptionPane;
 
 /**
- * The dialog for adding a meeting
+ * The dialog used for adding a meeting
  * @author yha5009
  */
 public class AddMeetingDialog extends javax.swing.JDialog {

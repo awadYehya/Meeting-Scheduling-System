@@ -21,7 +21,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * The Meeting class. This is used to create meeting objects. It holds person objects attending the meeting.
+ * The Meeting class, this is used to create meeting objects, and it holds person objects attending the meeting.
  * @author Yehya Awad
  * 
  */

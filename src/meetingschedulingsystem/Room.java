@@ -20,7 +20,7 @@ import java.io.Serializable;
 import java.util.ArrayList;
 
 /**
- * The Room class. This is used to create room objects. It holds meeting objects held in the room.
+ * The Room class, this is used to create room objects, it holds meeting objects held in the room.
  * @author yha5009
  */
 

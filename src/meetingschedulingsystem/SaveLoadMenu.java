@@ -29,7 +29,8 @@ import javax.swing.JFileChooser;
 import javax.swing.JOptionPane;
 
 /**
- * The load/save menu. This menu opens when you click on "Load/Save" on the MainMenu.
+ * The load/save menu, this menu opens when you click on "Load/Save" on the MainMenu, and it controls
+ * the file chooser/loading/saving processes
  * @author yehyaawad
  */
 public class SaveLoadMenu extends javax.swing.JDialog {

@@ -20,7 +20,7 @@ package meetingschedulingsystem;
 import java.io.Serializable;
 
 /**
- * The Person class. This is used to create person objects. It simply holds a person's information.
+ * The Person class, this is used to create person objects, and tt simply holds a person's information.
  * @author Yehya Awad
  * 
  */
